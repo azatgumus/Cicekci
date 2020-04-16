@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4265B7F4-63F0-4C1F-B2B8-3F0BF0C05C1E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cicekci</RootNamespace>
+    <AssemblyName>Cicekci</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\..\..\AjaxControlToolkit.Binary.NET40(3)\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="AjaxMin, Version=4.97.4951.28478, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
+      <HintPath>packages\AjaxMin.4.97.4951.28483\lib\net40\AjaxMin.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\SiparişDetay.aspx" />
+    <Content Include="Account\SiparişListesi.aspx" />
+    <Content Include="Admin\Default.aspx" />
+    <Content Include="Admin\KategoriEdition.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="Styles\Resimler\star1.jpg" />
+    <Content Include="Styles\Resimler\star2.jpg" />
+    <Content Include="Styles\Resimler\star3.jpg" />
+    <Content Include="Styles\Resimler\star4.jpg" />
+    <Content Include="Styles\Resimler\star5.jpg" />
+    <Content Include="YorumEkle.aspx" />
+    <Content Include="Account\ChangePassword.aspx" />
+    <Content Include="Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="Hakkımızda.aspx" />
+    <Content Include="Kontroller\PopülerÜrünler.ascx" />
+    <Content Include="SepeteEkle.aspx" />
+    <Content Include="Sepetim.aspx" />
+    <Content Include="Styles\Resimler\1x1.gif" />
+    <Content Include="Styles\Resimler\a1.gif" />
+    <Content Include="Styles\Resimler\a2.gif" />
+    <Content Include="Styles\Resimler\a3.gif" />
+    <Content Include="Styles\Resimler\a4.gif" />
+    <Content Include="Styles\Resimler\a6.gif" />
+    <Content Include="Styles\Resimler\a7.gif" />
+    <Content Include="Styles\Resimler\add.png" />
+    <Content Include="Styles\Resimler\application_edit.png" />
+    <Content Include="Styles\Resimler\arrowbutton.gif" />
+    <Content Include="Styles\Resimler\arrow_left.png" />
+    <Content Include="Styles\Resimler\cancel.png" />
+    <Content Include="Styles\Resimler\cart.gif" />
+    <Content Include="Styles\Resimler\delete.png" />
+    <Content Include="Styles\Resimler\e-ticaret.jpg" />
+    <Content Include="Styles\Resimler\entry_save.png" />
+    <Content Include="Styles\Resimler\FilledStar.png" />
+    <Content Include="Styles\Resimler\grid_background.gif" />
+    <Content Include="Styles\Resimler\help_bkgrd.gif" />
+    <Content Include="Styles\Resimler\Giriş.jpg" />
+    <Content Include="Styles\Resimler\house.png" />
+    <Content Include="Styles\Resimler\Kaydol.png" />
+    <Content Include="Styles\Resimler\kgpg_sign.png" />
+    <Content Include="Styles\Resimler\modernliving.gif" />
+    <Content Include="Styles\Resimler\modernliving_bkgrd.gif" />
+    <Content Include="Styles\Resimler\most_secretive_place.gif" />
+    <Content Include="Styles\Resimler\review_this_product.gif" />
+    <Content Include="Styles\Resimler\save.png" />
+    <Content Include="Styles\Resimler\SavedStar.png" />
+    <Content Include="Styles\Resimler\search.gif" />
+    <Content Include="Styles\Resimler\services.gif" />
+    <Content Include="Styles\Resimler\SiparişGüncelleme.PNG" />
+    <Content Include="Styles\Resimler\SiparişTamam.PNG" />
+    <Content Include="Styles\Resimler\sitebkgrd.gif" />
+    <Content Include="Styles\Resimler\sitebkgrdnogray.GIF" />
+    <Content Include="Styles\Resimler\submit.gif" />
+    <Content Include="Styles\Resimler\tableRowH.gif" />
+    <Content Include="Styles\Resimler\target.gif" />
+    <Content Include="Default.aspx" />
+    <Content Include="Styles\Resimler\Global.asax" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="SiparişKayıt.aspx" />
+    <Content Include="ÜrünDetayı.aspx" />
+    <Content Include="ÜrünListesi.aspx" />
+    <Content Include="İletişim.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\SiparişDetay.aspx.cs">
+      <DependentUpon>SiparişDetay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\SiparişDetay.aspx.designer.cs">
+      <DependentUpon>SiparişDetay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\SiparişListesi.aspx.cs">
+      <DependentUpon>SiparişListesi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\SiparişListesi.aspx.designer.cs">
+      <DependentUpon>SiparişListesi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\KategoriEdition.aspx.cs">
+      <DependentUpon>KategoriEdition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\KategoriEdition.aspx.designer.cs">
+      <DependentUpon>KategoriEdition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Sepetim.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DataAccess\Context.cs" />
+    <Compile Include="DataAccess\Kategori.cs" />
+    <Compile Include="DataAccess\Rol.cs" />
+    <Compile Include="DataAccess\Sepet.cs" />
+    <Compile Include="DataAccess\Siparis.cs" />
+    <Compile Include="DataAccess\Urun.cs" />
+    <Compile Include="DataAccess\UrunSepet.cs" />
+    <Compile Include="DataAccess\Uye.cs" />
+    <Compile Include="DataAccess\Yorum.cs" />
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YorumEkle.aspx.cs">
+      <DependentUpon>YorumEkle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YorumEkle.aspx.designer.cs">
+      <DependentUpon>YorumEkle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.designer.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Kontroller\PopülerÜrünler.ascx.cs">
+      <DependentUpon>PopülerÜrünler.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Kontroller\PopülerÜrünler.ascx.designer.cs">
+      <DependentUpon>PopülerÜrünler.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\Resimler\Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Hakkımızda.aspx.cs">
+      <DependentUpon>Hakkımızda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Hakkımızda.aspx.designer.cs">
+      <DependentUpon>Hakkımızda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SepeteEkle.aspx.cs">
+      <DependentUpon>SepeteEkle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SepeteEkle.aspx.designer.cs">
+      <DependentUpon>SepeteEkle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sepetim.aspx.cs">
+      <DependentUpon>Sepetim.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sepetim.aspx.designer.cs">
+      <DependentUpon>Sepetim.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SiparişKayıt.aspx.cs">
+      <DependentUpon>SiparişKayıt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiparişKayıt.aspx.designer.cs">
+      <DependentUpon>SiparişKayıt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ÜrünDetayı.aspx.cs">
+      <DependentUpon>ÜrünDetayı.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ÜrünDetayı.aspx.designer.cs">
+      <DependentUpon>ÜrünDetayı.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ÜrünListesi.aspx.cs">
+      <DependentUpon>ÜrünListesi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ÜrünListesi.aspx.designer.cs">
+      <DependentUpon>ÜrünListesi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="İletişim.aspx.cs">
+      <DependentUpon>İletişim.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="İletişim.aspx.designer.cs">
+      <DependentUpon>İletişim.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Mails\" />
+    <Folder Include="ÜrünKatalog\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config" />
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3618</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

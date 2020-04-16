@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CommerceModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="CommerceModelStoreContainer">
+    <EntitySet Name="İnceleme" EntityType="CommerceModel.Store.İnceleme" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Kategoriler" EntityType="CommerceModel.Store.Kategoriler" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sepet" EntityType="CommerceModel.Store.Sepet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SiparişDetay" EntityType="CommerceModel.Store.SiparişDetay" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Siparişler" EntityType="CommerceModel.Store.Siparişler" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ürün" EntityType="CommerceModel.Store.Ürün" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VewOrderDetails" EntityType="CommerceModel.Store.VewOrderDetails" store:Type="Views" store:Schema="dbo" store:Name="VewOrderDetails">
+      <DefiningQuery>SELECT 
+      [VewOrderDetails].[ÜrünID] AS [ÜrünID], 
+      [VewOrderDetails].[ModelNumarası] AS [ModelNumarası], 
+      [VewOrderDetails].[ModelAdı] AS [ModelAdı], 
+      [VewOrderDetails].[Miktar] AS [Miktar], 
+      [VewOrderDetails].[BirimFiyat] AS [BirimFiyat], 
+      [VewOrderDetails].[SiparişID] AS [SiparişID]
+      FROM [dbo].[VewOrderDetails] AS [VewOrderDetails]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ViewAlsoPurchased" EntityType="CommerceModel.Store.ViewAlsoPurchased" store:Type="Views" store:Schema="dbo" store:Name="ViewAlsoPurchased">
+      <DefiningQuery>SELECT 
+      [ViewAlsoPurchased].[ÜrünID] AS [ÜrünID], 
+      [ViewAlsoPurchased].[ModelAdı] AS [ModelAdı], 
+      [ViewAlsoPurchased].[TotalNumPurchased] AS [TotalNumPurchased], 
+      [ViewAlsoPurchased].[SiparişID] AS [SiparişID], 
+      [ViewAlsoPurchased].[Ürün_ÜrünID] AS [Ürün_ÜrünID]
+      FROM [dbo].[ViewAlsoPurchased] AS [ViewAlsoPurchased]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ViewCart" EntityType="CommerceModel.Store.ViewCart" store:Type="Views" store:Schema="dbo" store:Name="ViewCart">
+      <DefiningQuery>SELECT 
+      [ViewCart].[ÜrünID] AS [ÜrünID], 
+      [ViewCart].[ModelNumarası] AS [ModelNumarası], 
+      [ViewCart].[ModelAdı] AS [ModelAdı], 
+      [ViewCart].[BirimFiyat] AS [BirimFiyat], 
+      [ViewCart].[Miktar] AS [Miktar], 
+      [ViewCart].[KartID] AS [KartID]
+      FROM [dbo].[ViewCart] AS [ViewCart]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Order_OrderDetails" Association="CommerceModel.Store.FK_Order_OrderDetails">
+      <End Role="Siparişler" EntitySet="Siparişler" />
+      <End Role="SiparişDetay" EntitySet="SiparişDetay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Categories" Association="CommerceModel.Store.FK_Products_Categories">
+      <End Role="Kategoriler" EntitySet="Kategoriler" />
+      <End Role="Ürün" EntitySet="Ürün" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reviews_Products" Association="CommerceModel.Store.FK_Reviews_Products">
+      <End Role="Ürün" EntitySet="Ürün" />
+      <End Role="İnceleme" EntitySet="İnceleme" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShoppingCart_Products" Association="CommerceModel.Store.FK_ShoppingCart_Products">
+      <End Role="Ürün" EntitySet="Ürün" />
+      <End Role="Sepet" EntitySet="Sepet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="İnceleme">
+    <Key>
+      <PropertyRef Name="İncelemeID" />
+    </Key>
+    <Property Name="İncelemeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ÜrünID" Type="int" Nullable="false" />
+    <Property Name="MüşteriAdı" Type="nvarchar" MaxLength="50" />
+    <Property Name="MüşteriEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="Derecelendirme" Type="int" Nullable="false" />
+    <Property Name="Yorum" Type="nvarchar" MaxLength="3850" />
+  </EntityType>
+  <EntityType Name="Kategoriler">
+    <Key>
+      <PropertyRef Name="KategoriID" />
+    </Key>
+    <Property Name="KategoriID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAdı" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sepet">
+    <Key>
+      <PropertyRef Name="KayıtID" />
+    </Key>
+    <Property Name="KayıtID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="KartID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Miktar" Type="int" Nullable="false" />
+    <Property Name="ÜrünID" Type="int" Nullable="false" />
+    <Property Name="OluşturmaTarihi" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SiparişDetay">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SiparişID" Type="int" />
+    <Property Name="ÜrünID" Type="int" />
+    <Property Name="Miktar" Type="int" />
+    <Property Name="BirimFiyat" Type="money" />
+  </EntityType>
+  <EntityType Name="Siparişler">
+    <Key>
+      <PropertyRef Name="SiparişID" />
+    </Key>
+    <Property Name="SiparişID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MüşteriAdı" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="SiparişTarihi" Type="datetime" Nullable="false" />
+    <Property Name="SevkTarihi" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ürün">
+    <Key>
+      <PropertyRef Name="ÜrünID" />
+    </Key>
+    <Property Name="ÜrünID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriID" Type="int" Nullable="false" />
+    <Property Name="ModelNumarası" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModelAdı" Type="nvarchar" MaxLength="50" />
+    <Property Name="ÜrünResmi" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirimFiyat" Type="money" Nullable="false" />
+    <Property Name="Tanım" Type="nvarchar" MaxLength="3800" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'C:\USERS\WINDOWS7\DESKTOP\ÖMER PROJE\Cicekci\Cicekci\APP_DATA\COMMERCE.MDF.dbo.VewOrderDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="VewOrderDetails">
+    <Key>
+      <PropertyRef Name="ÜrünID" />
+    </Key>
+    <Property Name="ÜrünID" Type="int" Nullable="false" />
+    <Property Name="ModelNumarası" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModelAdı" Type="nvarchar" MaxLength="50" />
+    <Property Name="Miktar" Type="int" />
+    <Property Name="BirimFiyat" Type="money" />
+    <Property Name="SiparişID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'C:\USERS\WINDOWS7\DESKTOP\ÖMER PROJE\Cicekci\Cicekci\APP_DATA\COMMERCE.MDF.dbo.ViewAlsoPurchased' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="ViewAlsoPurchased">
+    <Key>
+      <PropertyRef Name="Ürün_ÜrünID" />
+    </Key>
+    <Property Name="ÜrünID" Type="int" />
+    <Property Name="ModelAdı" Type="nvarchar" MaxLength="50" />
+    <Property Name="TotalNumPurchased" Type="int" />
+    <Property Name="SiparişID" Type="int" />
+    <Property Name="Ürün_ÜrünID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'C:\USERS\WINDOWS7\DESKTOP\ÖMER PROJE\Cicekci\Cicekci\APP_DATA\COMMERCE.MDF.dbo.ViewCart' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="ViewCart">
+    <Key>
+      <PropertyRef Name="ÜrünID" />
+      <PropertyRef Name="BirimFiyat" />
+      <PropertyRef Name="Miktar" />
+    </Key>
+    <Property Name="ÜrünID" Type="int" Nullable="false" />
+    <Property Name="ModelNumarası" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModelAdı" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirimFiyat" Type="money" Nullable="false" />
+    <Property Name="Miktar" Type="int" Nullable="false" />
+    <Property Name="KartID" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Order_OrderDetails">
+    <End Role="Siparişler" Type="CommerceModel.Store.Siparişler" Multiplicity="0..1" />
+    <End Role="SiparişDetay" Type="CommerceModel.Store.SiparişDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Siparişler">
+        <PropertyRef Name="SiparişID" />
+      </Principal>
+      <Dependent Role="SiparişDetay">
+        <PropertyRef Name="SiparişID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Categories">
+    <End Role="Kategoriler" Type="CommerceModel.Store.Kategoriler" Multiplicity="1" />
+    <End Role="Ürün" Type="CommerceModel.Store.Ürün" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategoriler">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="Ürün">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reviews_Products">
+    <End Role="Ürün" Type="CommerceModel.Store.Ürün" Multiplicity="1" />
+    <End Role="İnceleme" Type="CommerceModel.Store.İnceleme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ürün">
+        <PropertyRef Name="ÜrünID" />
+      </Principal>
+      <Dependent Role="İnceleme">
+        <PropertyRef Name="ÜrünID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShoppingCart_Products">
+    <End Role="Ürün" Type="CommerceModel.Store.Ürün" Multiplicity="1" />
+    <End Role="Sepet" Type="CommerceModel.Store.Sepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ürün">
+        <PropertyRef Name="ÜrünID" />
+      </Principal>
+      <Dependent Role="Sepet">
+        <PropertyRef Name="ÜrünID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="SelectPurchasedWithProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ÜrünID" Type="int" Mode="In" />
+  </Function>
+</Schema>

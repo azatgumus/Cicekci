@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CommerceModelStoreContainer" CdmEntityContainer="CicekciEntities">
+    <EntitySetMapping Name="İnceleme">
+      <EntityTypeMapping TypeName="CommerceModel.İnceleme">
+        <MappingFragment StoreEntitySet="İnceleme">
+          <ScalarProperty Name="İncelemeID" ColumnName="İncelemeID" />
+          <ScalarProperty Name="ÜrünID" ColumnName="ÜrünID" />
+          <ScalarProperty Name="MüşteriAdı" ColumnName="MüşteriAdı" />
+          <ScalarProperty Name="MüşteriEmail" ColumnName="MüşteriEmail" />
+          <ScalarProperty Name="Derecelendirme" ColumnName="Derecelendirme" />
+          <ScalarProperty Name="Yorum" ColumnName="Yorum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategorilers">
+      <EntityTypeMapping TypeName="CommerceModel.Kategoriler">
+        <MappingFragment StoreEntitySet="Kategoriler">
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="KategoriAdı" ColumnName="KategoriAdı" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sepets">
+      <EntityTypeMapping TypeName="CommerceModel.Sepet">
+        <MappingFragment StoreEntitySet="Sepet">
+          <ScalarProperty Name="KayıtID" ColumnName="KayıtID" />
+          <ScalarProperty Name="KartID" ColumnName="KartID" />
+          <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+          <ScalarProperty Name="ÜrünID" ColumnName="ÜrünID" />
+          <ScalarProperty Name="OluşturmaTarihi" ColumnName="OluşturmaTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SiparişDetay">
+      <EntityTypeMapping TypeName="CommerceModel.SiparişDetay">
+        <MappingFragment StoreEntitySet="SiparişDetay">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SiparişID" ColumnName="SiparişID" />
+          <ScalarProperty Name="ÜrünID" ColumnName="ÜrünID" />
+          <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+          <ScalarProperty Name="BirimFiyat" ColumnName="BirimFiyat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Siparişler">
+      <EntityTypeMapping TypeName="CommerceModel.Siparişler">
+        <MappingFragment StoreEntitySet="Siparişler">
+          <ScalarProperty Name="SiparişID" ColumnName="SiparişID" />
+          <ScalarProperty Name="MüşteriAdı" ColumnName="MüşteriAdı" />
+          <ScalarProperty Name="SiparişTarihi" ColumnName="SiparişTarihi" />
+          <ScalarProperty Name="SevkTarihi" ColumnName="SevkTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ürün">
+      <EntityTypeMapping TypeName="CommerceModel.Ürün">
+        <MappingFragment StoreEntitySet="Ürün">
+          <ScalarProperty Name="ÜrünID" ColumnName="ÜrünID" />
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="ModelNumarası" ColumnName="ModelNumarası" />
+          <ScalarProperty Name="ModelAdı" ColumnName="ModelAdı" />
+          <ScalarProperty Name="ÜrünResmi" ColumnName="ÜrünResmi" />
+          <ScalarProperty Name="BirimFiyat" ColumnName="BirimFiyat" />
+          <ScalarProperty Name="Tanım" ColumnName="Tanım" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewOrderDetails">
+      <EntityTypeMapping TypeName="CommerceModel.ViewOrderDetails">
+        <MappingFragment StoreEntitySet="VewOrderDetails">
+          <ScalarProperty Name="ÜrünID" ColumnName="ÜrünID" />
+          <ScalarProperty Name="ModelNumarası" ColumnName="ModelNumarası" />
+          <ScalarProperty Name="ModelAdı" ColumnName="ModelAdı" />
+          <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+          <ScalarProperty Name="BirimFiyat" ColumnName="BirimFiyat" />
+          <ScalarProperty Name="SiparişID" ColumnName="SiparişID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewAlsoPurchaseds">
+      <EntityTypeMapping TypeName="CommerceModel.ViewAlsoPurchased">
+        <MappingFragment StoreEntitySet="ViewAlsoPurchased">
+          <ScalarProperty Name="ÜrünID" ColumnName="ÜrünID" />
+          <ScalarProperty Name="ModelAdı" ColumnName="ModelAdı" />
+          <ScalarProperty Name="TotalNumPurchased" ColumnName="TotalNumPurchased" />
+          <ScalarProperty Name="SiparişID" ColumnName="SiparişID" />
+          <ScalarProperty Name="Ürün_ÜrünID" ColumnName="Ürün_ÜrünID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewCarts">
+      <EntityTypeMapping TypeName="CommerceModel.ViewCart">
+        <MappingFragment StoreEntitySet="ViewCart">
+          <ScalarProperty Name="ÜrünID" ColumnName="ÜrünID" />
+          <ScalarProperty Name="ModelNumarası" ColumnName="ModelNumarası" />
+          <ScalarProperty Name="ModelAdı" ColumnName="ModelAdı" />
+          <ScalarProperty Name="BirimFiyat" ColumnName="BirimFiyat" />
+          <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+          <ScalarProperty Name="KartID" ColumnName="KartID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SelectPurchasedWithProducts" FunctionName="CommerceModel.Store.SelectPurchasedWithProducts">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CommerceModel.SelectPurchasedWithProducts_Result">
+          <ScalarProperty Name="ÜrünID" ColumnName="ÜrünID" />
+          <ScalarProperty Name="ModelAdı" ColumnName="ModelAdı" />
+          <ScalarProperty Name="TotalNum" ColumnName="TotalNum" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
