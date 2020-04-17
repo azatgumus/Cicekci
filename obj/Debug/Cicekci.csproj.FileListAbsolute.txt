@@ -149,3 +149,15 @@ E:\Cicekci\obj\Debug\Cicekci.csproj.CoreCompileInputs.cache
 E:\Cicekci\obj\Debug\Cicekci.csproj.CopyComplete
 E:\Cicekci\obj\Debug\Cicekci.dll
 E:\Cicekci\obj\Debug\Cicekci.pdb
+E:\Git\Cicekci\bin\Cicekci.dll.config
+E:\Git\Cicekci\bin\Cicekci.dll
+E:\Git\Cicekci\bin\Cicekci.pdb
+E:\Git\Cicekci\bin\AjaxMin.dll
+E:\Git\Cicekci\bin\EntityFramework.dll
+E:\Git\Cicekci\bin\EntityFramework.SqlServer.dll
+E:\Git\Cicekci\bin\EntityFramework.xml
+E:\Git\Cicekci\bin\EntityFramework.SqlServer.xml
+E:\Git\Cicekci\obj\Debug\Cicekci.csproj.CoreCompileInputs.cache
+E:\Git\Cicekci\obj\Debug\Cicekci.csproj.CopyComplete
+E:\Git\Cicekci\obj\Debug\Cicekci.dll
+E:\Git\Cicekci\obj\Debug\Cicekci.pdb

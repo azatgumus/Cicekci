@@ -13,7 +13,7 @@ namespace Cicekci.DataAccess
     
         public int Id { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(50),Required]
         public string Ad { get; set; }
     
         public virtual ICollection<Urun> Urun { get; set; }

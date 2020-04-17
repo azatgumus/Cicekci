@@ -36,7 +36,7 @@ namespace Cicekci
         public decimal SepetTutarı(string kartID)
         {
 
-            using (Context db = new Context())
+            using (DataContext db = new DataContext())
             {
                 decimal sepetTutarı = 0;
                 try
@@ -59,7 +59,7 @@ namespace Cicekci
         //------------------------------------------------------------------------------------------------------------------------------------------+
         public void ÜrünÇıkar(string kartID, int ürünID)
         {
-            using (Context db = new Context())
+            using (DataContext db = new DataContext())
             {
                 try
                 {
@@ -82,7 +82,7 @@ namespace Cicekci
         //------------------------------------------------------------------------------------------------------------------------------------------+
         public void ÜrünGüncelle(string kartID, int ürünID, int miktar)
         {
-            using (Context db = new Context())
+            using (DataContext db = new DataContext())
             {
                 try
                 {
@@ -105,7 +105,7 @@ namespace Cicekci
         //------------------------------------------------------------------------------------------------------------------------------------------+
         public void SepetiVeritabanındaGüncelle(String kartId, SepetGüncelleme[] CartItemUpdates)
         {
-            using (Context db = new Context())
+            using (DataContext db = new DataContext())
             {
                 try
                 {
@@ -143,7 +143,7 @@ namespace Cicekci
       //---------------------------------------------------------------------------------------------------------------------------+
         public void ÜrünEkle(string kartID, int ürünID, int miktar)
         {
-            using (Context db = new Context())
+            using (DataContext db = new DataContext())
             {
                 try
                 {
@@ -176,7 +176,7 @@ namespace Cicekci
         //------------------------------------------------------------------------------------------------------------------------------------------+
         public bool SiparişiGönder(string UserName)
         {
-            using (Context db = new Context())
+            using (DataContext db = new DataContext())
             {
                 try
                 {
@@ -237,7 +237,7 @@ namespace Cicekci
         //------------------------------------------------------------------------------------------------------------------------------------------+
         public void LoginsizSepetKaydı(String oldKartId, String UserName)
         {
-            using (Context db = new Context())
+            using (DataContext db = new DataContext())
             {
                 try
                 {

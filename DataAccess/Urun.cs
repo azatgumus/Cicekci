@@ -20,7 +20,7 @@ namespace Cicekci.DataAccess
         public decimal BirimFiyat { get; set; }
         [MaxLength(500)]
         public string Aciklama { get; set; }
-        [MaxLength(100)]
+        [MaxLength(100), Required]
         public string Ad { get; set; }
         public Nullable<bool> CokSatan { get; set; }
     

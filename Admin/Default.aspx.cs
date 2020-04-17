@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using Cicekci.DataAccess;
 using System.IO;
-using System.Data.Objects;
 
 
 namespace Cicekci.Admin
@@ -43,7 +40,7 @@ namespace Cicekci.Admin
         /// </summary>
         void BindGrid()
         {
-            using (Context db = new Context())
+            using (DataContext db = new DataContext())
             {
 
                 
@@ -107,7 +104,7 @@ namespace Cicekci.Admin
 
                 if (txtModelNo != null && txtModelAdı != null)
                 {
-                    using (Context db = new Context())
+                    using (DataContext db = new DataContext())
                     {
                         if (fileUpload.HasFile)
                         {
@@ -171,7 +168,7 @@ namespace Cicekci.Admin
 
             if (txtModelNo != null)
             {
-                using (Context db = new Context())
+                using (DataContext db = new DataContext())
                 {
                     int ürünID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
                     Urun obj = db.Urun.First(x => x.Id == ürünID);
@@ -207,7 +204,7 @@ namespace Cicekci.Admin
         protected void gridSample_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int ürünID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
-            using (Context db = new Context())
+            using (DataContext db = new DataContext())
             {
                 Urun obj = db.Urun.First(x => x.Id == ürünID);
 

@@ -1,20 +1,20 @@
 ﻿namespace Cicekci.DataAccess
 {
     using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.ModelConfiguration.Conventions;
 
-    public partial class Context : DbContext
+    public partial class DataContext : DbContext
     {
-        public Context()
-            : base("name=Context")
+        public DataContext()
+            : base("name=DataContext")
         {
-            Database.SetInitializer<Context>(new CreateDatabaseIfNotExists<Context>());
+            Database.SetInitializer<DataContext>(new CreateDatabaseIfNotExists<DataContext>());
         }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    throw new UnintentionalCodeFirstException();
-        //}
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
 
         public DbSet<Kategori> Kategori { get; set; }
         public DbSet<Rol> Rol { get; set; }

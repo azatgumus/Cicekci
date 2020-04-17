@@ -8,7 +8,7 @@ namespace Cicekci.Kontroller
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            using (Context db = new Context())
+            using (DataContext db = new DataContext())
             {
                 try
                 {

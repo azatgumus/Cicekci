@@ -43,7 +43,7 @@ namespace Cicekci.Admin
         /// </summary>
         void BindGrid()
         {
-            using (Context db = new Context())
+            using (DataContext db = new DataContext())
             {
                 if (db.Kategori.Count() > 0)
                 {
@@ -84,7 +84,7 @@ namespace Cicekci.Admin
                  
                 if (txtKategoriAdı.Text != null)
                 {
-                    using (Context db = new Context())
+                    using (DataContext db = new DataContext())
                     {
                         
                         Kategori obj = new Kategori();
@@ -119,7 +119,7 @@ namespace Cicekci.Admin
 
             if (txtKategoriAdı.Text != null)
             {
-                using (Context db = new Context())
+                using (DataContext db = new DataContext())
                 {
                     int kategoriID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
                     Kategori obj = db.Kategori.First(x => x.Id == kategoriID);
@@ -139,7 +139,7 @@ namespace Cicekci.Admin
         protected void gridSample_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int kategoriID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
-            using (Context db = new Context())
+            using (DataContext db = new DataContext())
             {
                 Kategori obj = db.Kategori.First(x => x.Id == kategoriID);
                 db.Kategori.Remove(obj);

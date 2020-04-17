@@ -16,10 +16,11 @@ namespace Cicekci.DataAccess
     public partial class Siparis
     {
         public int Id { get; set; }
-        [MaxLength(255)]
+        [MaxLength(50), Required]
         public string MusteriAdi { get; set; }
         public System.DateTime SiparisTarihi { get; set; }
-        public System.DateTime KartNo { get; set; }
+        [MaxLength(16), Required]
+        public string KartNo { get; set; }
         public int UrunId { get; set; }
         public int Miktar { get; set; }
         public Nullable<int> UyeId { get; set; }

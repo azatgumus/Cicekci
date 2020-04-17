@@ -64,8 +64,7 @@
 		</div>
  		<div id="leftColumn">
 			<h3>Ürünlerimiz</h3>
-            <asp:ListView ID="ListView_Ürün_Menu" runat="server" 
-                DataKeyNames="Id" DataSourceID="EDS_Kategori_Menu">
+            <asp:ListView ID="ListView_Ürün_Menu" runat="server" DataSourceID="SqlDataSource1">
                 <EmptyDataTemplate>Ürün Yok.</EmptyDataTemplate>
                 <ItemSeparatorTemplate></ItemSeparatorTemplate>
                 <ItemTemplate>
@@ -81,9 +80,7 @@
                     <div style="text-align: left;background-color: #FFCC66;font-family: Verdana, Arial, Helvetica, sans-serif;color: #333333;"></div>
                 </LayoutTemplate>
             </asp:ListView>
-            <asp:EntityDataSource ID="EDS_Kategori_Menu" runat="server" EnableFlattening="False" 
-                                  ConnectionString="name=CicekEntities" DefaultContainerName="CicekEntities" EntitySetName="Kategori">
-            </asp:EntityDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DataContext %>" SelectCommand="SELECT [Id],[Ad] FROM [Kategori]"></asp:SqlDataSource>
 		</div>
 		<div class="clear"></div>
 	</div>

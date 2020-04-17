@@ -45,9 +45,9 @@
 (function( window, undefined ) {
 
 // Define a local copy of jQuery
-var jQuery = function( selector, context ) {
+var jQuery = function( selector, DataContext ) {
 		///	<summary>
-		///		1: $(expression, context) - This function accepts a string containing a CSS selector which is then used to match a set of elements.
+		///		1: $(expression, DataContext) - This function accepts a string containing a CSS selector which is then used to match a set of elements.
 		///		2: $(html) - Create DOM elements on-the-fly from the provided String of raw HTML.
 		///		3: $(elements) - Wrap jQuery functionality around a single or multiple DOM Element(s).
 		///		4: $(callback) - A shorthand for $(document).ready().
@@ -59,13 +59,13 @@ var jQuery = function( selector, context ) {
 		///		3: elements - DOM element(s) to be encapsulated by a jQuery object.
 		///		4: callback - The function to execute when the DOM is ready.
 		///	</param>
-		///	<param name="context" type="jQuery">
-		///		1: context - A DOM Element, Document or jQuery to use as context.
+		///	<param name="DataContext" type="jQuery">
+		///		1: DataContext - A DOM Element, Document or jQuery to use as DataContext.
 		///	</param>
 		///	<returns type="jQuery" />
 
 		// The jQuery object is actually just the init constructor 'enhanced'
-		return new jQuery.fn.init( selector, context );
+		return new jQuery.fn.init( selector, DataContext );
 	},
 
 	// Map over jQuery in case of overwrite
@@ -119,7 +119,7 @@ var jQuery = function( selector, context ) {
 	indexOf = Array.prototype.indexOf;
 
 jQuery.fn = jQuery.prototype = {
-	init: function( selector, context ) {
+	init: function( selector, DataContext ) {
 
 		var match, elem, ret, doc;
 
@@ -130,7 +130,7 @@ jQuery.fn = jQuery.prototype = {
 
 		// Handle $(DOMElement)
 		if ( selector.nodeType ) {
-			this.context = this[0] = selector;
+			this.DataContext = this[0] = selector;
 			this.length = 1;
 			return this;
 		}
@@ -140,21 +140,21 @@ jQuery.fn = jQuery.prototype = {
 			// Are we dealing with HTML string or an ID?
 			match = quickExpr.exec( selector );
 
-			// Verify a match, and that no context was specified for #id
-			if ( match && (match[1] || !context) ) {
+			// Verify a match, and that no DataContext was specified for #id
+			if ( match && (match[1] || !DataContext) ) {
 
 				// HANDLE: $(html) -> $(array)
 				if ( match[1] ) {
-					doc = (context ? context.ownerDocument || context : document);
+					doc = (DataContext ? DataContext.ownerDocument || DataContext : document);
 
 					// If a single string is passed in and it's a single tag
 					// just do a createElement and skip the rest
 					ret = rsingleTag.exec( selector );
 
 					if ( ret ) {
-						if ( jQuery.isPlainObject( context ) ) {
+						if ( jQuery.isPlainObject( DataContext ) ) {
 							selector = [ document.createElement( ret[1] ) ];
-							jQuery.fn.attr.call( selector, context, true );
+							jQuery.fn.attr.call( selector, DataContext, true );
 
 						} else {
 							selector = [ doc.createElement( ret[1] ) ];
@@ -181,25 +181,25 @@ jQuery.fn = jQuery.prototype = {
 						this[0] = elem;
 					}
 
-					this.context = document;
+					this.DataContext = document;
 					this.selector = selector;
 					return this;
 				}
 
 			// HANDLE: $("TAG")
-			} else if ( !context && /^\w+$/.test( selector ) ) {
+			} else if ( !DataContext && /^\w+$/.test( selector ) ) {
 				this.selector = selector;
-				this.context = document;
+				this.DataContext = document;
 				selector = document.getElementsByTagName( selector );
 
 			// HANDLE: $(expr, $(...))
-			} else if ( !context || context.jquery ) {
-				return (context || rootjQuery).find( selector );
+			} else if ( !DataContext || DataContext.jquery ) {
+				return (DataContext || rootjQuery).find( selector );
 
-			// HANDLE: $(expr, context)
-			// (which is just equivalent to: $(context).find(expr)
+			// HANDLE: $(expr, DataContext)
+			// (which is just equivalent to: $(DataContext).find(expr)
 			} else {
-				return jQuery( context ).find( selector );
+				return jQuery( DataContext ).find( selector );
 			}
 
 		// HANDLE: $(function)
@@ -210,7 +210,7 @@ jQuery.fn = jQuery.prototype = {
 
 		if (selector.selector !== undefined) {
 			this.selector = selector.selector;
-			this.context = selector.context;
+			this.DataContext = selector.DataContext;
 		}
 
 		return jQuery.isArray( selector ) ?
@@ -287,7 +287,7 @@ jQuery.fn = jQuery.prototype = {
 		// Add the old object onto the stack (as a reference)
 		ret.prevObject = this;
 
-		ret.context = this.context;
+		ret.DataContext = this.DataContext;
 
 		if ( name === "find" ) {
 			ret.selector = this.selector + (this.selector ? " " : "") + selector;
@@ -327,7 +327,7 @@ jQuery.fn = jQuery.prototype = {
 	// only used internally.)
 	each: function( callback, args ) {
 		///	<summary>
-		///		Execute a function within the context of every matched element.
+		///		Execute a function within the DataContext of every matched element.
 		///		This means that every time the passed-in function is executed
 		///		(which is once for every element matched) the 'this' keyword
 		///		points to the specific element.
@@ -732,10 +732,10 @@ jQuery.extend({
 		///	<returns type="Function" />
 	},
 
-	// Evalulates a script in a global context
+	// Evalulates a script in a global DataContext
 	globalEval: function( data ) {
 		///	<summary>
-		///		Internally evaluates a script in a global context.
+		///		Internally evaluates a script in a global DataContext.
 		///	</summary>
 		///	<private />
 
@@ -3021,13 +3021,13 @@ jQuery.fn.extend({
 //				
 //				if ( name === "live" ) {
 //					// bind live handler
-//					jQuery( this.context ).bind( liveConvert( type, this.selector ), {
+//					jQuery( this.DataContext ).bind( liveConvert( type, this.selector ), {
 //						data: data, selector: this.selector, live: type
 //					}, fn );
 //
 //				} else {
 //					// unbind live handler
-//					jQuery( this.context ).unbind( liveConvert( type, this.selector ), fn ? { guid: fn.guid + this.selector + type } : null );
+//					jQuery( this.DataContext ).unbind( liveConvert( type, this.selector ), fn ? { guid: fn.guid + this.selector + type } : null );
 //				}
 //			}
 //			
@@ -3068,13 +3068,13 @@ jQuery.fn[ "live" ] = function( types, data, fn ) {
 		
 		if ( "live" === "live" ) {
 			// bind live handler
-			jQuery( this.context ).bind( liveConvert( type, this.selector ), {
+			jQuery( this.DataContext ).bind( liveConvert( type, this.selector ), {
 				data: data, selector: this.selector, live: type
 			}, fn );
 
 		} else {
 			// unbind live handler
-			jQuery( this.context ).unbind( liveConvert( type, this.selector ), fn ? { guid: fn.guid + this.selector + type } : null );
+			jQuery( this.DataContext ).unbind( liveConvert( type, this.selector ), fn ? { guid: fn.guid + this.selector + type } : null );
 		}
 	}
 	
@@ -3110,13 +3110,13 @@ jQuery.fn[ "die" ] = function( types, data, fn ) {
 		
 		if ( "die" === "live" ) {
 			// bind live handler
-			jQuery( this.context ).bind( liveConvert( type, this.selector ), {
+			jQuery( this.DataContext ).bind( liveConvert( type, this.selector ), {
 				data: data, selector: this.selector, live: type
 			}, fn );
 
 		} else {
 			// unbind live handler
-			jQuery( this.context ).unbind( liveConvert( type, this.selector ), fn ? { guid: fn.guid + this.selector + type } : null );
+			jQuery( this.DataContext ).unbind( liveConvert( type, this.selector ), fn ? { guid: fn.guid + this.selector + type } : null );
 		}
 	}
 	
@@ -3498,11 +3498,11 @@ var chunker = /((?:\((?:\([^()]+\)|[^()]+)+\)|\[(?:\[[^[\]]*\]|['"][^'"]*['"]|[^
 	return 0;
 });
 
-var Sizzle = function(selector, context, results, seed) {
+var Sizzle = function(selector, DataContext, results, seed) {
 	results = results || [];
-	var origContext = context = context || document;
+	var origDataContext = DataContext = DataContext || document;
 
-	if ( context.nodeType !== 1 && context.nodeType !== 9 ) {
+	if ( DataContext.nodeType !== 1 && DataContext.nodeType !== 9 ) {
 		return [];
 	}
 	
@@ -3510,7 +3510,7 @@ var Sizzle = function(selector, context, results, seed) {
 		return results;
 	}
 
-	var parts = [], m, set, checkSet, extra, prune = true, contextXML = isXML(context),
+	var parts = [], m, set, checkSet, extra, prune = true, DataContextXML = isXML(DataContext),
 		soFar = selector;
 	
 	// Reset the position of the chunker regexp (start from head)
@@ -3527,11 +3527,11 @@ var Sizzle = function(selector, context, results, seed) {
 
 	if ( parts.length > 1 && origPOS.exec( selector ) ) {
 		if ( parts.length === 2 && Expr.relative[ parts[0] ] ) {
-			set = posProcess( parts[0] + parts[1], context );
+			set = posProcess( parts[0] + parts[1], DataContext );
 		} else {
 			set = Expr.relative[ parts[0] ] ?
-				[ context ] :
-				Sizzle( parts.shift(), context );
+				[ DataContext ] :
+				Sizzle( parts.shift(), DataContext );
 
 			while ( parts.length ) {
 				selector = parts.shift();
@@ -3544,18 +3544,18 @@ var Sizzle = function(selector, context, results, seed) {
 			}
 		}
 	} else {
-		// Take a shortcut and set the context if the root selector is an ID
+		// Take a shortcut and set the DataContext if the root selector is an ID
 		// (but not if it'll be faster if the inner selector is an ID)
-		if ( !seed && parts.length > 1 && context.nodeType === 9 && !contextXML &&
+		if ( !seed && parts.length > 1 && DataContext.nodeType === 9 && !DataContextXML &&
 				Expr.match.ID.test(parts[0]) && !Expr.match.ID.test(parts[parts.length - 1]) ) {
-			var ret = Sizzle.find( parts.shift(), context, contextXML );
-			context = ret.expr ? Sizzle.filter( ret.expr, ret.set )[0] : ret.set[0];
+			var ret = Sizzle.find( parts.shift(), DataContext, DataContextXML );
+			DataContext = ret.expr ? Sizzle.filter( ret.expr, ret.set )[0] : ret.set[0];
 		}
 
-		if ( context ) {
+		if ( DataContext ) {
 			var ret = seed ?
 				{ expr: parts.pop(), set: makeArray(seed) } :
-				Sizzle.find( parts.pop(), parts.length === 1 && (parts[0] === "~" || parts[0] === "+") && context.parentNode ? context.parentNode : context, contextXML );
+				Sizzle.find( parts.pop(), parts.length === 1 && (parts[0] === "~" || parts[0] === "+") && DataContext.parentNode ? DataContext.parentNode : DataContext, DataContextXML );
 			set = ret.expr ? Sizzle.filter( ret.expr, ret.set ) : ret.set;
 
 			if ( parts.length > 0 ) {
@@ -3574,10 +3574,10 @@ var Sizzle = function(selector, context, results, seed) {
 				}
 
 				if ( pop == null ) {
-					pop = context;
+					pop = DataContext;
 				}
 
-				Expr.relative[ cur ]( checkSet, pop, contextXML );
+				Expr.relative[ cur ]( checkSet, pop, DataContextXML );
 			}
 		} else {
 			checkSet = parts = [];
@@ -3595,9 +3595,9 @@ var Sizzle = function(selector, context, results, seed) {
 	if ( toString.call(checkSet) === "[object Array]" ) {
 		if ( !prune ) {
 			results.push.apply( results, checkSet );
-		} else if ( context && context.nodeType === 1 ) {
+		} else if ( DataContext && DataContext.nodeType === 1 ) {
 			for ( var i = 0; checkSet[i] != null; i++ ) {
-				if ( checkSet[i] && (checkSet[i] === true || checkSet[i].nodeType === 1 && contains(context, checkSet[i])) ) {
+				if ( checkSet[i] && (checkSet[i] === true || checkSet[i].nodeType === 1 && contains(DataContext, checkSet[i])) ) {
 					results.push( set[i] );
 				}
 			}
@@ -3613,7 +3613,7 @@ var Sizzle = function(selector, context, results, seed) {
 	}
 
 	if ( extra ) {
-		Sizzle( extra, origContext, results, seed );
+		Sizzle( extra, origDataContext, results, seed );
 		Sizzle.uniqueSort( results );
 	}
 
@@ -3647,7 +3647,7 @@ Sizzle.matches = function(expr, set){
 	return Sizzle(expr, null, null, set);
 };
 
-Sizzle.find = function(expr, context, isXML){
+Sizzle.find = function(expr, DataContext, isXML){
 	var set, match;
 
 	if ( !expr ) {
@@ -3663,7 +3663,7 @@ Sizzle.find = function(expr, context, isXML){
 
 			if ( left.substr( left.length - 1 ) !== "\\" ) {
 				match[1] = (match[1] || "").replace(/\\/g, "");
-				set = Expr.find[ type ]( match, context, isXML );
+				set = Expr.find[ type ]( match, DataContext, isXML );
 				if ( set != null ) {
 					expr = expr.replace( Expr.match[ type ], "" );
 					break;
@@ -3673,7 +3673,7 @@ Sizzle.find = function(expr, context, isXML){
 	}
 
 	if ( !set ) {
-		set = context.getElementsByTagName("*");
+		set = DataContext.getElementsByTagName("*");
 	}
 
 	return {set: set, expr: expr};
@@ -3860,15 +3860,15 @@ var Expr = Sizzle.selectors = {
 		}
 	},
 	find: {
-		ID: function(match, context, isXML){
-			if ( typeof context.getElementById !== "undefined" && !isXML ) {
-				var m = context.getElementById(match[1]);
+		ID: function(match, DataContext, isXML){
+			if ( typeof DataContext.getElementById !== "undefined" && !isXML ) {
+				var m = DataContext.getElementById(match[1]);
 				return m ? [m] : [];
 			}
 		},
-		NAME: function(match, context){
-			if ( typeof context.getElementsByName !== "undefined" ) {
-				var ret = [], results = context.getElementsByName(match[1]);
+		NAME: function(match, DataContext){
+			if ( typeof DataContext.getElementsByName !== "undefined" ) {
+				var ret = [], results = DataContext.getElementsByName(match[1]);
 
 				for ( var i = 0, l = results.length; i < l; i++ ) {
 					if ( results[i].getAttribute("name") === match[1] ) {
@@ -3879,8 +3879,8 @@ var Expr = Sizzle.selectors = {
 				return ret.length === 0 ? null : ret;
 			}
 		},
-		TAG: function(match, context){
-			return context.getElementsByTagName(match[1]);
+		TAG: function(match, DataContext){
+			return DataContext.getElementsByTagName(match[1]);
 		}
 	},
 	preFilter: {
@@ -4314,9 +4314,9 @@ function getText( elems ) {
 	// The workaround has to do additional checks after a getElementById
 	// Which slows things down for other browsers (hence the branching)
 	//	if ( document.getElementById( id ) ) {
-		Expr.find.ID = function(match, context, isXML){
-			if ( typeof context.getElementById !== "undefined" && !isXML ) {
-				var m = context.getElementById(match[1]);
+		Expr.find.ID = function(match, DataContext, isXML){
+			if ( typeof DataContext.getElementById !== "undefined" && !isXML ) {
+				var m = DataContext.getElementById(match[1]);
 				return m ? m.id === match[1] || typeof m.getAttributeNode !== "undefined" && m.getAttributeNode("id").nodeValue === match[1] ? [m] : undefined : [];
 			}
 		};
@@ -4342,8 +4342,8 @@ function getText( elems ) {
 
 	// Make sure no comments are found
 	//	if ( div.getElementsByTagName("*").length > 0 ) {
-		Expr.find.TAG = function(match, context){
-			var results = context.getElementsByTagName(match[1]);
+		Expr.find.TAG = function(match, DataContext){
+			var results = DataContext.getElementsByTagName(match[1]);
 
 			// Filter out possible comments
 			if ( match[1] === "*" ) {
@@ -4385,18 +4385,18 @@ if ( document.querySelectorAll ) {
 			return;
 		}
 	
-		Sizzle = function(query, context, extra, seed){
-			context = context || document;
+		Sizzle = function(query, DataContext, extra, seed){
+			DataContext = DataContext || document;
 
 			// Only use querySelectorAll on non-XML documents
 			// (ID selectors don't work in non-HTML documents)
-			if ( !seed && context.nodeType === 9 && !isXML(context) ) {
+			if ( !seed && DataContext.nodeType === 9 && !isXML(DataContext) ) {
 				try {
-					return makeArray( context.querySelectorAll(query), extra );
+					return makeArray( DataContext.querySelectorAll(query), extra );
 				} catch(e){}
 			}
 		
-			return oldSizzle(query, context, extra, seed);
+			return oldSizzle(query, DataContext, extra, seed);
 		};
 
 		for ( var prop in oldSizzle ) {
@@ -4426,9 +4426,9 @@ if ( document.querySelectorAll ) {
 	}
 	
 	Expr.order.splice(1, 0, "CLASS");
-	Expr.find.CLASS = function(match, context, isXML) {
-		if ( typeof context.getElementsByClassName !== "undefined" && !isXML ) {
-			return context.getElementsByClassName(match[1]);
+	Expr.find.CLASS = function(match, DataContext, isXML) {
+		if ( typeof DataContext.getElementsByClassName !== "undefined" && !isXML ) {
+			return DataContext.getElementsByClassName(match[1]);
 		}
 	};
 
@@ -4545,9 +4545,9 @@ var isXML = function(elem){
 	return documentElement ? documentElement.nodeName !== "HTML" : false;
 };
 
-var posProcess = function(selector, context){
+var posProcess = function(selector, DataContext){
 	var tmpSet = [], later = "", match,
-		root = context.nodeType ? [context] : context;
+		root = DataContext.nodeType ? [DataContext] : DataContext;
 
 	// Position selectors must be done after the filter
 	// And so must :not(positional) so we move all PSEUDOs to the end
@@ -4721,16 +4721,16 @@ jQuery.fn.extend({
 		return !!selector && jQuery.filter( selector, this ).length > 0;
 	},
 
-	closest: function( selectors, context ) {
+	closest: function( selectors, DataContext ) {
 		///	<summary>
 		///		Get a set of elements containing the closest parent element that matches the specified selector, the starting element included.
 		///	</summary>
 		///	<param name="selectors" type="String">
 		///		A string containing a selector expression to match elements against.
 		///	</param>
-		///	<param name="context" type="Element">
-		///		A DOM element within which a matching element may be found. If no context is passed
-		///		in then the context of the jQuery set will be used instead.
+		///	<param name="DataContext" type="Element">
+		///		A DOM element within which a matching element may be found. If no DataContext is passed
+		///		in then the DataContext of the jQuery set will be used instead.
 		///	</param>
 		///	<returns type="jQuery" />
 
@@ -4743,12 +4743,12 @@ jQuery.fn.extend({
 
 					if ( !matches[selector] ) {
 						matches[selector] = jQuery.expr.match.POS.test( selector ) ? 
-							jQuery( selector, context || this.context ) :
+							jQuery( selector, DataContext || this.DataContext ) :
 							selector;
 					}
 				}
 
-				while ( cur && cur.ownerDocument && cur !== context ) {
+				while ( cur && cur.ownerDocument && cur !== DataContext ) {
 					for ( selector in matches ) {
 						match = matches[selector];
 
@@ -4765,10 +4765,10 @@ jQuery.fn.extend({
 		}
 
 		var pos = jQuery.expr.match.POS.test( selectors ) ? 
-			jQuery( selectors, context || this.context ) : null;
+			jQuery( selectors, DataContext || this.DataContext ) : null;
 
 		return this.map(function( i, cur ) {
-			while ( cur && cur.ownerDocument && cur !== context ) {
+			while ( cur && cur.ownerDocument && cur !== DataContext ) {
 				if ( pos ? pos.index(cur) > -1 : jQuery(cur).is(selectors) ) {
 					return cur;
 				}
@@ -4804,7 +4804,7 @@ jQuery.fn.extend({
 			elem.jquery ? elem[0] : elem, this );
 	},
 
-	add: function( selector, context ) {
+	add: function( selector, DataContext ) {
 		///	<summary>
 		///		Adds one or more Elements to the set of matched elements.
 		///		Part of DOM/Traversing
@@ -4812,13 +4812,13 @@ jQuery.fn.extend({
 		///	<param name="selector" type="String">
 		///		A string containing a selector expression to match additional elements against.
 		///	</param>
-		///	<param name="context" type="Element">
-		///		Add some elements rooted against the specified context.
+		///	<param name="DataContext" type="Element">
+		///		Add some elements rooted against the specified DataContext.
 		///	</param>
 		///	<returns type="jQuery" />
 
 		var set = typeof selector === "string" ?
-				jQuery( selector, context || this.context ) :
+				jQuery( selector, DataContext || this.DataContext ) :
 				jQuery.makeArray( selector ),
 			all = jQuery.merge( this.get(), set );
 
@@ -5740,17 +5740,17 @@ jQuery.each({
 });
 
 jQuery.extend({
-	clean: function( elems, context, fragment, scripts ) {
+	clean: function( elems, DataContext, fragment, scripts ) {
 		///	<summary>
 		///		This method is internal only.
 		///	</summary>
 		///	<private />
 
-		context = context || document;
+		DataContext = DataContext || document;
 
-		// !context.createElement fails in IE with an error but returns typeof 'object'
-		if ( typeof context.createElement === "undefined" ) {
-			context = context.ownerDocument || context[0] && context[0].ownerDocument || document;
+		// !DataContext.createElement fails in IE with an error but returns typeof 'object'
+		if ( typeof DataContext.createElement === "undefined" ) {
+			DataContext = DataContext.ownerDocument || DataContext[0] && DataContext[0].ownerDocument || document;
 		}
 
 		var ret = [];
@@ -5766,7 +5766,7 @@ jQuery.extend({
 
 			// Convert html string into DOM nodes
 			if ( typeof elem === "string" && !rhtml.test( elem ) ) {
-				elem = context.createTextNode( elem );
+				elem = DataContext.createTextNode( elem );
 
 			} else if ( typeof elem === "string" ) {
 				// Fix "XHTML"-style tags in all browsers
@@ -5776,7 +5776,7 @@ jQuery.extend({
 				var tag = (rtagName.exec( elem ) || ["", ""])[1].toLowerCase(),
 					wrap = wrapMap[ tag ] || wrapMap._default,
 					depth = wrap[0],
-					div = context.createElement("div");
+					div = DataContext.createElement("div");
 
 				// Go to html and back, then peel off extra wrappers
 				div.innerHTML = wrap[1] + elem + wrap[2];
@@ -5809,7 +5809,7 @@ jQuery.extend({
 
 				// IE completely kills leading whitespace when innerHTML is used
 				if ( !jQuery.support.leadingWhitespace && rleadingWhitespace.test( elem ) ) {
-					div.insertBefore( context.createTextNode( rleadingWhitespace.exec(elem)[0] ), div.firstChild );
+					div.insertBefore( DataContext.createTextNode( rleadingWhitespace.exec(elem)[0] ), div.firstChild );
 				}
 
 				elem = jQuery.makeArray( div.childNodes );
@@ -6432,7 +6432,7 @@ jQuery.extend({
 		var s = jQuery.extend(true, {}, jQuery.ajaxSettings, origSettings);
 		
 		var jsonp, status, data,
-			callbackContext = origSettings && origSettings.context || s,
+			callbackDataContext = origSettings && origSettings.DataContext || s,
 			type = s.type.toUpperCase();
 
 		// convert data if not already a string
@@ -6600,7 +6600,7 @@ jQuery.extend({
 		} catch(e) {}
 
 		// Allow custom headers/mimetypes and early abort
-		if ( s.beforeSend && s.beforeSend.call(callbackContext, xhr, s) === false ) {
+		if ( s.beforeSend && s.beforeSend.call(callbackDataContext, xhr, s) === false ) {
 			// Handle the global AJAX counter
 			if ( s.global && ! --jQuery.active ) {
 				jQuery.event.trigger( "ajaxStop" );
@@ -6720,7 +6720,7 @@ jQuery.extend({
 		function success() {
 			// If a local callback was specified, fire it and pass it the data
 			if ( s.success ) {
-				s.success.call( callbackContext, data, status, xhr );
+				s.success.call( callbackDataContext, data, status, xhr );
 			}
 
 			// Fire the global callback
@@ -6732,7 +6732,7 @@ jQuery.extend({
 		function complete() {
 			// Process result
 			if ( s.complete ) {
-				s.complete.call( callbackContext, xhr, status);
+				s.complete.call( callbackDataContext, xhr, status);
 			}
 
 			// The request was completed
@@ -6747,7 +6747,7 @@ jQuery.extend({
 		}
 		
 		function trigger(type, args) {
-			(s.context ? jQuery(s.context) : jQuery.event).trigger(type, args);
+			(s.DataContext ? jQuery(s.DataContext) : jQuery.event).trigger(type, args);
 		}
 
 		// return XMLHttpRequest to allow aborting the request etc.
@@ -6762,12 +6762,12 @@ jQuery.extend({
 
 		// If a local callback was specified, fire it
 		if ( s.error ) {
-			s.error.call( s.context || s, xhr, status, e );
+			s.error.call( s.DataContext || s, xhr, status, e );
 		}
 
 		// Fire the global callback
 		if ( s.global ) {
-			(s.context ? jQuery(s.context) : jQuery.event).trigger( "ajaxError", [xhr, s, e] );
+			(s.DataContext ? jQuery(s.DataContext) : jQuery.event).trigger( "ajaxError", [xhr, s, e] );
 		}
 	},
 
@@ -6840,7 +6840,7 @@ jQuery.extend({
 			if ( type === "json" || !type && ct.indexOf("json") >= 0 ) {
 				data = jQuery.parseJSON( data );
 
-			// If the type is "script", eval it in global context
+			// If the type is "script", eval it in global DataContext
 			} else if ( type === "script" || !type && ct.indexOf("javascript") >= 0 ) {
 				jQuery.globalEval( data );
 			}

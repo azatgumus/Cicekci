@@ -16,7 +16,7 @@ namespace Cicekci
             {
                 int ürünID = 0;
                 Int32.TryParse(Request["ürünID"].ToString(), out ürünID);
-                using (Context db = new Context())
+                using (DataContext db = new DataContext())
                 {
                     try
                     {
@@ -54,7 +54,7 @@ namespace Cicekci
                 int rating = Int32.Parse(Rating.SelectedItem.Value);
 
                 // yorumu db ye kaydet
-                using (Context db = new Context())
+                using (DataContext db = new DataContext())
                 {
                     try
                     {

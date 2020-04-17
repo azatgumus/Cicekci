@@ -1,6 +1,5 @@
 namespace Cicekci.DataAccess
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -12,11 +11,12 @@ namespace Cicekci.DataAccess
         }
     
         public int Id { get; set; }
-        [MaxLength(150)]
+        [MaxLength(50), Required]
         public string KullaniciAdi { get; set; }
-
-        [MaxLength(50)]
+       
+        [MaxLength(10), Required]
         public string Sifre { get; set; }
+        [MaxLength(255), Required]
         public string Eposta { get; set; }
         public System.DateTime KayitTarihi { get; set; }
         public System.DateTime SonGirisTarihi { get; set; }
