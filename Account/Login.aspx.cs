@@ -23,7 +23,7 @@ namespace Cicekci.Account
                 }
             }
 
-            
+
             if (User.Identity.IsAuthenticated)
             {
                 FormsAuthentication.SignOut();
@@ -33,8 +33,9 @@ namespace Cicekci.Account
         protected void LoginUser_LoggedIn(object sender, EventArgs e)
         {
             Sepetim usersShoppingCart = new Sepetim();
-            String cartId = usersShoppingCart.SepetIdAl();
-            usersShoppingCart.LoginsizSepetKaydı(cartId, LoginUser.UserName);
+            //TODO bakılacak 
+            //String cartId = usersShoppingCart.SepetIdAl();
+            //usersShoppingCart.LoginsizSepetKaydı(cartId, LoginUser.UserName);
 
             if (Session["LoginReferrer"] != null)
             {
@@ -42,14 +43,14 @@ namespace Cicekci.Account
             }
 
             Session["UserName"] = LoginUser.UserName;
-            
-           
-           
+
+
+
         }
 
         protected void Password_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void RegisterHyperLink_Click(object sender, ImageClickEventArgs e)
@@ -59,16 +60,16 @@ namespace Cicekci.Account
 
         protected void LoginButton_Click(object sender, ImageClickEventArgs e)
         {
-            
+
             if (LoginUser.UserName == "admin" && LoginUser.Password == "123456")
-               Response.Redirect("~/Admin/Default.aspx"); 
-             
-           
+                Response.Redirect("~/Admin/Default.aspx");
+
+
         }
-            
+
         protected void UserName_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void UserName_TextChanged1(object sender, EventArgs e)

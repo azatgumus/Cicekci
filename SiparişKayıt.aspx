@@ -3,27 +3,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div id="CheckOutHeader" runat="server" class="ContentHead">
-                
         Gözden Geçir ve Siparişini Ver
 </div>
-<span id="Message" runat="server"><br />     
-   <asp:Label ID="LabelCartHeader" runat="server" 
-              Text="Tüm bilgilerin doğru olup olmadığını kontrol ediniz.">
-   </asp:Label>
-</span><br /> 
-<asp:GridView ID="Listem" runat="server" AutoGenerateColumns="false" 
-              DataKeyNames="ÜrünID,BirimFiyat,Miktar" 
-              DataSourceID="EDS_Sepet" 
+ 
+<asp:GridView ID="Listem" runat="server" AutoGenerateColumns="false" ShowFooter="true"
+               
+              
               CellPadding="4" GridLines="Vertical" CssClass="CartListItem" 
-              onrowdatabound="Listem_RowDataBound" ShowFooter="True">
-  <AlternatingRowStyle CssClass="CartListItemAlt" />
+              onrowdatabound="Listem_RowDataBound">
+  
   <Columns>
-    <asp:BoundField DataField="ÜrünID" HeaderText="Ürün ID" ReadOnly="True" 
-                    SortExpression="ÜrünID"  />
-    <asp:BoundField DataField="ModelNumarası" HeaderText="Model Numarası" 
-                    SortExpression="ModelNumarası" />
-    <asp:BoundField DataField="ModelAdı" HeaderText="Model Adı" 
-                    SortExpression="ModelAdı" />
+    <asp:BoundField DataField="Id" HeaderText="Ürün ID" ReadOnly="True" 
+                    SortExpression="Id"  />
+    
+    
     <asp:BoundField DataField="BirimFiyat" HeaderText="Birim Fiyat" ReadOnly="True" 
                     SortExpression="BirimFiyat" DataFormatString="{0:c}" />
     <asp:BoundField DataField="Miktar" HeaderText="Miktar" ReadOnly="True" 
@@ -55,43 +48,48 @@
        <tr>
            <td>
             <asp:Label ID="Label2" runat="server" Text="Adres:"></asp:Label>
-            </td><td>
-               <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            </td>
+           <td>
+               <asp:TextBox ID="txtAdres" runat="server"></asp:TextBox>
            </td>
            <td>
                <script type = "text/javascript">    
                    function Radio2_Click()
                    {   
-                       var textBox = document.getElementById("<%=TextBox2.ClientID %>");
+                       var textBox = document.getElementById("<%=txtKartNo.ClientID %>");
                        textBox.value = "";
                        textBox.disabled = true;
+                       ValidatorEnable(document.getElementById("<%=KartNoGerekli.ClientID %>"), false); 
                    }
                     function Radio1_Click()
                     {
-                        var textBox = document.getElementById("<%=TextBox2.ClientID %>");
+                        var textBox = document.getElementById("<%=txtKartNo.ClientID %>");
                             textBox.disabled = false;
-                     }
-                          
-                   
-                   
+                   }
                </script>
                 
-               <asp:RequiredFieldValidator ID="AdresGerekli" runat="server" ControlToValidate="TextBox1" 
+               <asp:RequiredFieldValidator ID="AdresGerekli" runat="server" ControlToValidate="txtAdres" 
                              CssClass="failureNotification" ErrorMessage="Adres gerekli." ToolTip="AdresGerekli." 
-                             ValidationGroup="LoginUserValidationGroup">*</asp:RequiredFieldValidator>
+                            />
            </td>
-
        </tr>
         <tr>
            <td>KartNo:</td><td>
-            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtKartNo" runat="server"></asp:TextBox>
             </td>
             <td>
-               <asp:RequiredFieldValidator ID="KartNoGerekli" runat="server" ControlToValidate="TextBox2" 
-                             CssClass="failureNotification" ErrorMessage="Kart-no gerekli." ToolTip="Kartno gerekli." 
-                             ValidationGroup="LoginUserValidationGroup">*</asp:RequiredFieldValidator>
+               <asp:RequiredFieldValidator ID="KartNoGerekli" runat="server" ControlToValidate="txtKartNo" 
+                             CssClass="failureNotification" ErrorMessage="Kart-no gerekli." ToolTip="Kartno gerekli." />
             </td>
-
+       </tr>
+         <tr>
+           <td>Ad Soyad:</td><td>
+            <asp:TextBox ID="txtAdSoyad" runat="server"></asp:TextBox>
+            </td>
+            <td>
+               <asp:RequiredFieldValidator runat="server" ControlToValidate="txtAdSoyad" 
+                             CssClass="failureNotification" ErrorMessage="Ad Soyad gerekli." ToolTip="Ad Soyad gerekli." />
+            </td>
        </tr>
 
     </table>
@@ -103,16 +101,5 @@
 </asp:Panel>
     
 <br />
-<asp:EntityDataSource ID="EDS_Sepet" runat="server" 
-                      ConnectionString="name=CicekEntities" 
-                      DefaultContainerName="CicekEntities" 
-                      EnableFlattening="False" 
-                      EnableUpdate="True" 
-                      EntitySetName="ViewCarts" 
-                      AutoGenerateWhereClause="True" Where="">
-   <WhereParameters>
-      <asp:SessionParameter Name="KartID" DefaultValue="0" 
-                                          SessionField="Cicekci_KartID" />
-   </WhereParameters>
-</asp:EntityDataSource>
+ 
 </asp:Content>

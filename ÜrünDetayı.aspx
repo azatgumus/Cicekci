@@ -1,11 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ÜrünDetayı.aspx.cs" Inherits="Cicekci.ÜrünDetay" %>
 
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:FormView ID="FormView1" runat="server" DataSourceID="EDS_ÜrünDetayı" DataKeyNames="Id" OnPageIndexChanging="FormView1_PageIndexChanging">
+    <asp:FormView ID="FormView1" runat="server"  DataKeyNames="Id">
     <ItemTemplate>
     <div class="ContentHead"><%# Eval("Ad") %></div><br />
       <table  border="0">
@@ -40,15 +38,9 @@
         </a>            
     </ItemTemplate>
     </asp:FormView>
-    <asp:EntityDataSource ID="EDS_ÜrünDetayı" runat="server" ConnectionString="name=CicekEntities"   EntityTypeFilter="" 
-              Select="" Where="" DefaultContainerName="CicekEntities" EnableFlattening="False" AutoGenerateWhereClause="True" EntitySetName="Urun">
-    <WhereParameters>
-      <asp:QueryStringParameter Name="Id" 
-                                QueryStringField="Id"  Type="Int32" />
-    </WhereParameters>
-    </asp:EntityDataSource>
+
     <asp:ListView ID="ListView_Yorumlar" runat="server" 
-              DataKeyNames="Id,UrunId,Derecelendirme" DataSourceID="EDS_Yorumlistesi">
+              DataKeyNames="Id,UrunId,Derecelendirme">
   <ItemTemplate>
     <tr>
       <td><%# Eval("MusteriAd") %></td>

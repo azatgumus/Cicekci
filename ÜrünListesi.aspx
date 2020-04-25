@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:ListView ID="ListView1" runat="server" DataSourceID="EDS_KategoriyeGöreÜrünler" DataKeyNames="Id" GroupItemCount="3">
+    <asp:ListView ID="ListView1" runat="server"  DataKeyNames="Id" GroupItemCount="3">
          <EmptyDataTemplate>
       <table runat="server">
         <tr>
@@ -57,11 +57,4 @@
     </table>
   </LayoutTemplate>
     </asp:ListView>
-    <asp:EntityDataSource ID="EDS_KategoriyeGöreÜrünler" runat="server" ConnectionString="name=CicekEntities" DefaultContainerName="CicekEntities" AutoGenerateWhereClause="True" EntitySetName="Urun">
-    <WhereParameters>
-        <asp:QueryStringParameter Name="KategoriId" 
-                                        QueryStringField="KategoriId" 
-                                        Type="Int32" />
-       </WhereParameters>
-    </asp:EntityDataSource>
 </asp:Content>

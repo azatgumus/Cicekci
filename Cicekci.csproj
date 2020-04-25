@@ -190,11 +190,15 @@
     <Compile Include="Classes\Sepetim.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Classes\SepetUrun.cs" />
+    <Compile Include="DataAccess\GenericRepository.cs" />
     <Compile Include="DataAccess\Context.cs" />
+    <Compile Include="DataAccess\IGenericRepository.cs" />
     <Compile Include="DataAccess\Kategori.cs" />
     <Compile Include="DataAccess\Rol.cs" />
     <Compile Include="DataAccess\Sepet.cs" />
     <Compile Include="DataAccess\Siparis.cs" />
+    <Compile Include="DataAccess\UnitOfWork.cs" />
     <Compile Include="DataAccess\Urun.cs" />
     <Compile Include="DataAccess\UrunSepet.cs" />
     <Compile Include="DataAccess\Uye.cs" />
@@ -206,6 +210,11 @@
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004212108140_InitialCreate.cs" />
+    <Compile Include="Migrations\202004212108140_InitialCreate.designer.cs">
+      <DependentUpon>202004212108140_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="YorumEkle.aspx.cs">
       <DependentUpon>YorumEkle.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -330,6 +339,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202004212108140_InitialCreate.resx">
+      <DependentUpon>202004212108140_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

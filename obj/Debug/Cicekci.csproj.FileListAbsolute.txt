@@ -161,3 +161,6 @@ E:\Git\Cicekci\obj\Debug\Cicekci.csproj.CoreCompileInputs.cache
 E:\Git\Cicekci\obj\Debug\Cicekci.csproj.CopyComplete
 E:\Git\Cicekci\obj\Debug\Cicekci.dll
 E:\Git\Cicekci\obj\Debug\Cicekci.pdb
+E:\Git\Cicekci\obj\Debug\Cicekci.csprojAssemblyReference.cache
+E:\Git\Cicekci\obj\Debug\Cicekci.Migrations.InitialCreate.resources
+E:\Git\Cicekci\obj\Debug\Cicekci.csproj.GenerateResource.cache

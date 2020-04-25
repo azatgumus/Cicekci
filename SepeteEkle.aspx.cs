@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Diagnostics;
 
 namespace Cicekci
 {
-    public partial class SepeteEkle : System.Web.UI.Page
+    public partial class SepeteEkle : Page
     {
 
 
@@ -18,9 +14,9 @@ namespace Cicekci
             int ürünId;
             if (!String.IsNullOrEmpty(rawId) && Int32.TryParse(rawId, out ürünId))
             {
+                //Ürün ekle
                 Sepetim usersShoppingCart = new Sepetim();
-                String cartId = usersShoppingCart.SepetIdAl();
-                usersShoppingCart.ÜrünEkle(cartId, ürünId, 1);
+                usersShoppingCart.UrunEkle(ürünId, 1);
             }
             else
             {

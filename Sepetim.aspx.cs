@@ -1,62 +1,43 @@
-﻿using System;
-using System.Collections.Specialized;
+﻿using Cicekci.Classes;
+using System;
 using System.Collections.Generic;
-using System.Collections;
+using System.Collections.Specialized;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace Cicekci
 {
-    public partial class Sepetim : System.Web.UI.Page
+    public partial class Sepetim : Page
     {
-        //------------------------------------------------------------------------------------------------------------------------------------------+
         protected void Page_Load(object sender, EventArgs e)
         {
-            Sepetim usersShoppingCart = new Sepetim();
-            String kartId = usersShoppingCart.SepetIdAl();
-            decimal sepetTutarı = 0;
-            sepetTutarı = usersShoppingCart.SepetTutarı(kartId);
-            if (sepetTutarı > 0)
-            {
-                lblTotal.Text = String.Format("{0:c}", usersShoppingCart.SepetTutarı(kartId));
-            }
-            else
-            {
-                LabelTotalText.Text = "";
-                lblTotal.Text = "";
-                ShoppingCartTitle.InnerText = "Sepetiniz Boş";
-                UpdateBtn.Visible = false;
-                CheckoutBtn.Visible = false;
-            }
+            if (IsPostBack) return;
         }
 
-        //------------------------------------------------------------------------------------------------------------------------------------------+
         protected void UpdateBtn_Click(object sender, ImageClickEventArgs e)
         {
             Sepetim usersShoppingCart = new Sepetim();
-            String kartId = usersShoppingCart.SepetIdAl();
+            string sepetID = usersShoppingCart.SepetIdAl();
 
-            SepetGüncelleme[] cartUpdates = new SepetGüncelleme[Listem.Rows.Count];
-            for (int i = 0; i < Listem.Rows.Count; i++)
+            SepetGüncelleme[] sepetUpdates = new SepetGüncelleme[grdListe.Rows.Count];
+            for (int i = 0; i < grdListe.Rows.Count; i++)
             {
                 IOrderedDictionary rowValues = new OrderedDictionary();
-                rowValues = GetValues(Listem.Rows[i]);
-                cartUpdates[i].ÜrünId = Convert.ToInt32(rowValues["ÜrünID"]);
-                cartUpdates[i].AlımMiktarı = Convert.ToInt32(rowValues["Miktar"]);
+                rowValues = GetValues(grdListe.Rows[i]);
+                sepetUpdates[i].UrunId = Convert.ToInt32(rowValues["Id"]);
 
-                CheckBox cbRemove = new CheckBox();
-                cbRemove = (CheckBox)Listem.Rows[i].FindControl("Çıkar");
-                cartUpdates[i].ÜrünüÇıkar = cbRemove.Checked;
+                sepetUpdates[i].AlimMiktari = Convert.ToInt16(rowValues["Miktar"]);
+
+                CheckBox cbRemove = (CheckBox)grdListe.Rows[i].FindControl("chkCikar");
+                sepetUpdates[i].UrunCikar = cbRemove.Checked;
             }
 
-            usersShoppingCart.SepetiVeritabanındaGüncelle(kartId, cartUpdates);
-            Listem.DataBind();
-            lblTotal.Text = String.Format("{0:c}", usersShoppingCart.SepetTutarı(kartId));
+            usersShoppingCart.SepetiVeritabanındaGüncelle(sepetID, sepetUpdates);
+            grdListe.DataBind();
         }
 
-        //------------------------------------------------------------------------------------------------------------------------------------------+
         public static IOrderedDictionary GetValues(GridViewRow row)
         {
             IOrderedDictionary values = new OrderedDictionary();
@@ -70,6 +51,41 @@ namespace Cicekci
             }
             return values;
         }
+
+
+        public List<SepetUrun> GetSepetItems()
+        {
+
+            Sepetim usersShoppingCart = new Sepetim();
+            string sepetID = usersShoppingCart.SepetIdAl();
+            if (sepetID == null)
+            {
+                LabelTotalText.Text = "";
+                lblTotal.Text = "";
+                ShoppingCartTitle.InnerText = "Sepetiniz Boş";
+                UpdateBtn.Visible = false;
+                CheckoutBtn.Visible = false;
+                return null;
+            }
+            var items = usersShoppingCart.SepetItems(sepetID);
+
+            decimal sepetTutari = items.Sum(od => od.Miktar * od.Urun.BirimFiyat);
+            if (sepetTutari > 0)
+            {
+                lblTotal.Text = string.Format("{0:c}", sepetTutari);
+                return items.Select(x => new SepetUrun { Miktar = x.Miktar, BirimFiyat = x.Urun.BirimFiyat, Ad = x.Urun.Ad, Id = x.Urun.Id }).ToList();
+            }
+            else
+            {
+                LabelTotalText.Text = "";
+                lblTotal.Text = "";
+                ShoppingCartTitle.InnerText = "Sepetiniz Boş";
+                UpdateBtn.Visible = false;
+                CheckoutBtn.Visible = false;
+                return null;
+            }
+        }
+
 
     }
 }

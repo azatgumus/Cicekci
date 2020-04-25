@@ -1,168 +1,132 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Cicekci.DataAccess;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Security;
 
 
 namespace Cicekci
 {
     public struct SepetGüncelleme
     {
-        public int ÜrünId;
-        public int AlımMiktarı;
-        public bool ÜrünüÇıkar;
+        public int UrunId;
+        public int AlimMiktari;
+        public bool UrunCikar;
     }
 
 
     public partial class Sepetim
     {
-        public const string KartId = "Cicekci_KartID";
-
-        //------------------------------------------------------------------------------------------------------------------------------------------+
-        public String SepetIdAl()
+        public const string KartId = "SepetId";
+        UnitOfWork _uow;
+        public Sepetim()
         {
-            if (Session[KartId] == null)
-            {
-                Session[KartId] = System.Web.HttpContext.Current.Request.IsAuthenticated ? User.Identity.Name : Guid.NewGuid().ToString();
-            }
-            return Session[KartId].ToString();
+            _uow = new UnitOfWork();
         }
 
         //------------------------------------------------------------------------------------------------------------------------------------------+
-        public decimal SepetTutarı(string kartID)
+        public string SepetIdAl()
         {
-
-            using (DataContext db = new DataContext())
-            {
-                decimal sepetTutarı = 0;
-                try
-                {
-                    //TODO bakılcak
-                    //var myCart = (from c in db.Sepet where c.Id == kartID select c);
-                    //if (myCart.Count() > 0)
-                    //{
-                    //    sepetTutarı = myCart.Sum(od => (decimal)od.Miktar * (decimal)od.BirimFiyat);
-                    //}
-                }
-                catch (Exception exp)
-                {
-                    throw new Exception("ERROR: Unable to Calculate Order Total - " + exp.Message.ToString(), exp);
-                }
-                return (sepetTutarı);
-            }
+            return Session[KartId]?.ToString();
         }
 
         //------------------------------------------------------------------------------------------------------------------------------------------+
-        public void ÜrünÇıkar(string kartID, int ürünID)
+        public List<UrunSepet> SepetItems(string sepetId)
         {
-            using (DataContext db = new DataContext())
+            List<UrunSepet> myCart;
+            DataContext db = new DataContext();
+            //decimal sepetTutarı = 0;
+            try
             {
-                try
-                {
-                    //var myItem = (from c in db.Sepets where c.KartID == kartID && c.ÜrünID == ürünID select c).FirstOrDefault();
-                    //if (myItem != null)
-                    //{
-                    //    db.DeleteObject(myItem);
-                    //    db.SaveChanges();
-                    //}
-
-                }
-                catch (Exception exp)
-                {
-                    throw new Exception("ERROR: Unable to Remove Cart Item - " + exp.Message.ToString(), exp);
-                }
+                myCart = (from c in db.UrunSepet
+                          where c.SepetId == sepetId
+                          select c).ToList();
             }
-
+            catch (Exception exp)
+            {
+                throw new Exception("ERROR: Unable to Calculate Order Total - " + exp.Message.ToString(), exp);
+            }
+            return myCart;
         }
 
         //------------------------------------------------------------------------------------------------------------------------------------------+
-        public void ÜrünGüncelle(string kartID, int ürünID, int miktar)
+        public void ÜrünÇıkar(string sepetId, int urunId)
         {
-            using (DataContext db = new DataContext())
-            {
-                try
-                {
-                    //TODO
-                    //var myItem = (from c in db.Sepets where c.KartID == kartID && c.ÜrünID == ürünID select c).FirstOrDefault();
-                    //if (myItem != null)
-                    //{
-                    //    myItem.Miktar = miktar;
-                    //    db.SaveChanges();
-                    //}
-                }
-                catch (Exception exp)
-                {
-                    throw new Exception("ERROR: Ürün Güncellenemedi - " + exp.Message.ToString(), exp);
-                }
-            }
-
+            var sepetItem = _uow.UrunSepetRepository.Get(x => x.SepetId == sepetId && x.UrunId == urunId).FirstOrDefault();
+            _uow.UrunSepetRepository.Delete(sepetItem);
+            _uow.Save();
         }
 
         //------------------------------------------------------------------------------------------------------------------------------------------+
-        public void SepetiVeritabanındaGüncelle(String kartId, SepetGüncelleme[] CartItemUpdates)
+        public void ÜrünGüncelle(string sepetId, int urunId, int miktar)
         {
-            using (DataContext db = new DataContext())
+            var sepetItem = _uow.UrunSepetRepository.Get(x => x.SepetId == sepetId && x.UrunId == urunId).FirstOrDefault();
+            sepetItem.Miktar = miktar;
+            _uow.UrunSepetRepository.Update(sepetItem);
+            _uow.Save();
+        }
+
+        //------------------------------------------------------------------------------------------------------------------------------------------+
+        public void SepetiVeritabanındaGüncelle(string sepetId, SepetGüncelleme[] sepetItemsUpdates)
+        {
+            var sepetItems = _uow.UrunSepetRepository.Get(x => x.SepetId == sepetId);
+            foreach (UrunSepet oldItem in sepetItems)
             {
-                try
+                SepetGüncelleme guncelItem = sepetItemsUpdates.FirstOrDefault(x => x.UrunId == oldItem.UrunId);
+                if (guncelItem.AlimMiktari < 1 || guncelItem.UrunCikar == true)
                 {
-                    int CartItemCOunt = CartItemUpdates.Count();
-                    //TODO
-                    //var myCart = (from c in db.ViewCarts where c.KartID == kartId select c);
-                    //foreach (var kartItem in myCart)
-                    //{
-                    //    // Iterate through all rows within shopping cart list
-                    //    for (int i = 0; i < CartItemCOunt; i++)
-                    //    {
-                    //        if (kartItem.ÜrünID == CartItemUpdates[i].ÜrünId)
-                    //        {
-                    //            if (CartItemUpdates[i].AlımMiktarı < 1 || CartItemUpdates[i].ÜrünüÇıkar == true)
-                    //            {
-                    //                ÜrünÇıkar(kartId, kartItem.ÜrünID);
-                    //            }
-                    //            else
-                    //            {
-                    //                ÜrünGüncelle(kartId, kartItem.ÜrünID, CartItemUpdates[i].AlımMiktarı);
-                    //            }
-                    //        }
-                    //    }
-                    //}
+                    ÜrünÇıkar(sepetId, oldItem.UrunId);
                 }
-                catch (Exception exp)
+                else
                 {
-                    throw new Exception("ERROR: Sepet Güncellenemedi - " + exp.Message.ToString(), exp);
+                    ÜrünGüncelle(sepetId, oldItem.UrunId, guncelItem.AlimMiktari);
                 }
             }
         }
 
         //-------------------------------------------------------------------------------------------------------------------------+
         //   ürün listesi sayfasında  veya ürün detay sayfasında kullanıcı sepete ekle linki tıkladığı zaman çağrılır                                                                                                                |
-      //---------------------------------------------------------------------------------------------------------------------------+
-        public void ÜrünEkle(string kartID, int ürünID, int miktar)
+        //---------------------------------------------------------------------------------------------------------------------------+
+        public void UrunEkle(int ürünID, int miktar)
         {
             using (DataContext db = new DataContext())
             {
+                //Sepet yoksa oluştur ve ürünü ekle
+                if (Session["SepetId"] == null)
+                {
+                    Sepet sepet = new Sepet();
+                    sepet.Id = Guid.NewGuid().ToString();
+                    sepet.OlusturmaTarihi = DateTime.Now;
+                    sepet.UrunSepet.Add(new UrunSepet
+                    {
+                        Sepet = sepet,
+                        Miktar = miktar,
+                        UrunId = ürünID
+                    });
+                    db.Sepet.Add(sepet);
+                    Session["SepetId"] = sepet.Id;
+                }
+                //Sepet varsa ürünü kontrol et, yoksa ekle varsa miktarını bir artır.
+                else
+                {
+                    string sepetId = Session[KartId].ToString();
+                    UrunSepet myItem = (from c in db.UrunSepet where c.SepetId == sepetId && c.UrunId == ürünID select c).FirstOrDefault();
+                    if (myItem == null)
+                    {
+                        UrunSepet sepetItem = new UrunSepet();
+                        sepetItem.Miktar = miktar;
+                        sepetItem.UrunId = ürünID;
+                        sepetItem.SepetId = sepetId;
+
+                        db.UrunSepet.Add(sepetItem);
+                    }
+                    else
+                    {
+                        myItem.Miktar += miktar;
+                    }
+                }
                 try
                 {
-                    //TODO bakılacak
-                    //var myItem = (from c in db.Sepet where c.Id == kartID && c.ÜrünID == ürünID select c).FirstOrDefault();
-                    //if (myItem == null)
-                    //{
-                    //    Sepet kartadd = new Sepet();
-                    //    kartadd.KartID = kartID;
-                    //    kartadd.Miktar = miktar;
-                    //    kartadd.ÜrünID = ürünID;
-                    //    kartadd.OluşturmaTarihi = DateTime.Now;
-                    //    db.Sepets.AddObject(kartadd);
-                    //}
-                    //else
-                    //{
-                    //    myItem.Miktar += miktar;
-                    //}
-
                     db.SaveChanges();
                 }
                 catch (Exception exp)
@@ -174,56 +138,18 @@ namespace Cicekci
         }
 
         //------------------------------------------------------------------------------------------------------------------------------------------+
-        public bool SiparişiGönder(string UserName)
+        public bool SiparişiGönder(string kartNo,string adSoyad)
         {
-            using (DataContext db = new DataContext())
+            _uow.SiparisRepository.Insert(new Siparis
             {
-                try
-                {
-                    //------------------------------------------------------------------------+
-                    //  yeni bir sipariş kaydı ekle                                            |
-                    //------------------------------------------------------------------------+
-                     Siparis newOrder = new Siparis();
-                    newOrder.MusteriAdi = UserName;
-                    newOrder.SiparisTarihi = DateTime.Now;
-                    db.Siparis.Add(newOrder);
-                    db.SaveChanges();
-
-                    //------------------------------------------------------------------------+
-                    //   Sepetteki her bir ürün için yeni bir sipariş SiparişDetay kaydı ekle |
-                    //------------------------------------------------------------------------+
-                    String kartId = SepetIdAl();
-                    //TODO bakılacak sepete
-                    //var myCart = (from c in db.Sepet where c.Id == kartId select c);
-                    //foreach (Sepet item in myCart)
-                    //{
-                    //    int i = 0;
-                    //    if (i < 1)
-                    //    {
-                    //        Siparis od = new Siparis();
-                    //        od.Id = newOrder.SiparişID;
-                    //        od.UrunId = item.ÜrünID;
-                    //        od.Miktar = item.Miktar;
-                    //        //od. = item.BirimFiyat;
-                    //        db.Siparis.Add(od);
-                    //        i++;
-                    //    }
-
-                    //    var myItem = (from c in db.Sepets where c.KartID == item.KartID && c.ÜrünID == item.ÜrünID select c).FirstOrDefault();
-                    //    if (myItem != null)
-                    //    {
-                    //        db.DeleteObject(myItem);
-                    //    }
-                    //}
-                    db.SaveChanges();
-                }
-                catch (Exception exp)
-                {
-                    throw new Exception("ERROR: sipariş gönderilemedi - " + exp.Message.ToString(), exp);
-                }
-            }
-
-            return (true);
+                KartNo = kartNo,
+                SiparisTarihi = DateTime.Now,
+                Id = Session["SepetId"].ToString(),
+                MusteriAdi = adSoyad
+                //TODO UyeId
+            });
+            _uow.Save();
+            return true;
         }
 
 

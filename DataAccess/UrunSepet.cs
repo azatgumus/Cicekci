@@ -7,8 +7,10 @@ namespace Cicekci.DataAccess
     {
         [Key, Column(Order = 0)]
         public int UrunId { get; set; }
+
         [Key, Column(Order = 1)]
-        public int SepetId { get; set; }
+        [MaxLength(50)]
+        public string SepetId { get; set; }
         public int Miktar { get; set; }
     
         public virtual Sepet Sepet { get; set; }
