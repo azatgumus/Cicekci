@@ -1,32 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Cicekci.DataAccess;
+using System;
 using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Cicekci.Account
 {
     public partial class Register : System.Web.UI.Page
     {
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            RegisterUser.ContinueDestinationPageUrl = Request.QueryString["ReturnUrl"];
         }
-
-        protected void RegisterUser_CreatedUser(object sender, EventArgs e)
+        protected void CreateUserButton_Click(object sender, EventArgs e)
         {
-            FormsAuthentication.SetAuthCookie(RegisterUser.UserName, false /* createPersistentCookie */);
+            UnitOfWork uow = new UnitOfWork();
+            string userName = UserName.Text.Trim();
 
-            string continueUrl = RegisterUser.ContinueDestinationPageUrl;
-            if (String.IsNullOrEmpty(continueUrl))
+            //Aynı kullanıcı adında bir kullanıcı var mı
+            Uye uye = uow.UyeRepository.Get(x => x.KullaniciAdi == userName).FirstOrDefault();
+            if (uye != null)
             {
-                continueUrl = "~/";
+                ErrorMessage.Text = $"{userName} adında bir kullanıcı zaten mevcut";
+                return;
             }
-            Response.Redirect(continueUrl);
+            uow.UyeRepository.Insert(new Uye
+            {
+
+                Eposta = Email.Text,
+                KayitTarihi = DateTime.Now,
+                KullaniciAdi = UserName.Text,
+                Sifre = Password.Text,
+                SonGirisTarihi = DateTime.Now,
+                RolId = 1
+            });
+            uow.Save();
+            Response.Redirect("Login.aspx");
         }
+
 
     }
 }
