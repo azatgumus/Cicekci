@@ -56,6 +56,12 @@ namespace Cicekci.Account
             if(uye!=null)
             {
                 FormsAuthentication.SetAuthCookie(UserName.Text, RememberMe.Checked);
+                //adminse
+                if(uye.RolId==2)
+                {
+                    Response.Redirect("~/Admin/Default.aspx");
+                }
+                //standart
                 Response.Redirect(Session["LoginReferrer"].ToString());
 
             }

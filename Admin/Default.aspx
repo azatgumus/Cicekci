@@ -19,7 +19,7 @@
            <a href="~/Admin/Default.aspx?KategoriId=-1" runat="server">Tüm ürünler</a>
                </li>
             <asp:ListView ID="ListView_Ürün_Menu" runat="server" 
-                DataKeyNames="Id" DataSourceID="EDS_Kategori_Menu">
+                DataKeyNames="Id" >
                 <EmptyDataTemplate>Ürün Yok.</EmptyDataTemplate>
                 <ItemSeparatorTemplate></ItemSeparatorTemplate>
                 <ItemTemplate>
@@ -39,9 +39,6 @@
            <a href="~/Admin/KategoriEdition.aspx" runat="server">Kategori Güncelle</a>
                </li>
 
-            <asp:EntityDataSource ID="EDS_Kategori_Menu" runat="server" EnableFlattening="False" 
-                                  ConnectionString="name=CicekEntities" DefaultContainerName="CicekEntities" EntitySetName="Kategori">
-            </asp:EntityDataSource>
            </div>
         
         <div id="centerColumn">
@@ -51,7 +48,7 @@
            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" ShowFooter="True"  AllowSorting="true"
               
                         CssClass="grid" OnRowCommand="gridSample_RowCommand" 
-        DataKeyNames="ÜrünID" CellPadding="4" ForeColor="#333333"
+        DataKeyNames="Id" CellPadding="4" ForeColor="#333333"
                         GridLines="None" OnRowCancelingEdit="gridSample_RowCancelingEdit" 
                         OnRowEditing="gridSample_RowEditing" 
         OnRowUpdating="gridSample_RowUpdating" 
@@ -86,32 +83,21 @@
                                 </FooterTemplate>
                             </asp:TemplateField>
                           
-                            <asp:TemplateField HeaderText="ModelNo">
+                            <asp:TemplateField HeaderText="Ürün Adı">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txtModelNo" runat="server" Text='<%# Bind("ModelNumarası") %>' CssClass="" MaxLength="30"></asp:TextBox>
+                                    <asp:TextBox ID="txtUrunAdi" runat="server" Text='<%# Bind("Ad") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lblModelNo" runat="server" Text='<%# Bind("ModelNumarası") %>'></asp:Label>
+                                    <asp:Label ID="lblUrunAdi" runat="server" Text='<%# Bind("Ad") %>'></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                   <asp:TextBox ID="txtYeniModelNo" runat="server" CssClass=""   MaxLength="30"></asp:TextBox>
+                                   <asp:TextBox ID="txtYeniUrunAdi" runat="server" CssClass=""   MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField>   
-                            <asp:TemplateField HeaderText="ModelAdı">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="txtModelAdı" runat="server" Text='<%# Bind("ModelAdı") %>' CssClass="" MaxLength="30"></asp:TextBox>
-                                </EditItemTemplate>
-                                <ItemTemplate>
-                                    <asp:Label ID="lblModelAdı" runat="server" Text='<%# Bind("ModelAdı") %>'></asp:Label>
-                                </ItemTemplate>
-                                <FooterTemplate>
-                                   <asp:TextBox ID="txtYeniModelAdı" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
-                                </FooterTemplate>
-                            </asp:TemplateField> 
 
-                             <asp:TemplateField HeaderText="ÜrünResmi">
+                             <asp:TemplateField HeaderText="Ürün Resmi">
                                 <ItemTemplate>              
-                      <asp:Image ID="Image1" runat="server" Height="70px" ImageUrl='<%# Eval("ÜrünResmi","~/ÜrünKatalog/{0}") %>' Width="80" />  
+                      <asp:Image ID="Image1" runat="server" Height="70px" ImageUrl='<%# Eval("Resim","~/ÜrünKatalog/{0}") %>' Width="80" />  
                                 </ItemTemplate>
                                  <EditItemTemplate>
                                     <asp:FileUpload ID="FileUpload1" runat="server" />    
@@ -134,15 +120,15 @@
                                  </FooterTemplate>
 
                              </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Tanım">
+                            <asp:TemplateField HeaderText="Açıklama">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txtTanım" runat="server" Text='<%#Bind("Tanım") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txtAciklama" runat="server" Text='<%#Bind("Aciklama") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lblTanım" runat="server" Text='<%#Bind("Tanım") %>'></asp:Label>
+                                    <asp:Label ID="lblAciklama" runat="server" Text='<%#Bind("Aciklama") %>'></asp:Label>
                                     </ItemTemplate>
                                 <FooterTemplate>
-                                    <asp:TextBox ID="txtYeniTanım" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtYeniAciklama" runat="server"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
                                                  
