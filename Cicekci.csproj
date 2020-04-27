@@ -86,6 +86,13 @@
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\KategoriEdition.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="Styles\Resimler\add32.png" />
+    <Content Include="Styles\Resimler\cancel32.png" />
+    <Content Include="Styles\Resimler\delete32.png" />
+    <Content Include="Styles\Resimler\edit32.png" />
+    <Content Include="Styles\Resimler\Pencil-icon1.png" />
+    <Content Include="Styles\Resimler\Pencil-icon.png" />
+    <Content Include="Styles\Resimler\save32.png" />
     <Content Include="Styles\Resimler\star1.jpg" />
     <Content Include="Styles\Resimler\star2.jpg" />
     <Content Include="Styles\Resimler\star3.jpg" />
@@ -111,7 +118,7 @@
     <Content Include="Styles\Resimler\application_edit.png" />
     <Content Include="Styles\Resimler\arrowbutton.gif" />
     <Content Include="Styles\Resimler\arrow_left.png" />
-    <Content Include="Styles\Resimler\cancel.png" />
+    <Content Include="Styles\Resimler\cancel16.png" />
     <Content Include="Styles\Resimler\cart.gif" />
     <Content Include="Styles\Resimler\delete.png" />
     <Content Include="Styles\Resimler\e-ticaret.jpg" />
