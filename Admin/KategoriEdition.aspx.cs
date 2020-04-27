@@ -48,7 +48,7 @@ namespace Cicekci.Admin
                 if (db.Kategori.Count() > 0)
                 {
 
-                    GridView1.DataSource = db.Kategori;
+                    GridView1.DataSource = db.Kategori.ToList();
                     GridView1.DataBind();
                 }
                 else

@@ -16,7 +16,7 @@
      <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" ShowFooter="True"  AllowSorting="true"
               
                         CssClass="grid" OnRowCommand="gridSample_RowCommand" 
-        DataKeyNames="KategoriID" CellPadding="4" ForeColor="#333333"
+        DataKeyNames="Id" CellPadding="4" ForeColor="#333333"
                         GridLines="None" OnRowCancelingEdit="gridSample_RowCancelingEdit" 
                         OnRowEditing="gridSample_RowEditing" 
         OnRowUpdating="gridSample_RowUpdating" 
@@ -27,37 +27,37 @@
                             <asp:TemplateField HeaderText="">
                                  <ItemTemplate>
                                   <asp:LinkButton  ID="lnkEdit" runat="server" Text="" CommandName="Edit" ToolTip="Düzenle"  
-                                        CommandArgument=''><img  src="~/Styles/Resimler/application_edit.png" alt="Düzenle" runat="server"/></asp:LinkButton>
+                                        CommandArgument=''><img  src="~/Styles/Resimler/edit32.png" alt="Düzenle" runat="server"/></asp:LinkButton>
                                     <asp:LinkButton ID="lnkDelete" runat="server" Text="" CommandName="Delete" 
                                         ToolTip="Sil" OnClientClick='return confirm("Silmek istediğine emin misin?");'
-                                        CommandArgument=''><img src="~/Styles/Resimler/delete.png" runat="server" alt="Sil" /></asp:LinkButton>
+                                        CommandArgument=''><img src="~/Styles/Resimler/delete32.png" runat="server" alt="Sil" /></asp:LinkButton>
                                         </ItemTemplate>
                                   
                               
                                 <EditItemTemplate>
                                     <div style="float:right; position:relative;">
                                     <asp:LinkButton ID="lnkInsert"  runat="server" Text="" ValidationGroup="editGrp" CommandName="Update" ToolTip="Save"
-                                        CommandArgument=''><img src="~/Styles/Resimler/save.png" runat="server" alt="Kaydet" /></asp:LinkButton>
+                                        CommandArgument=''><img src="~/Styles/Resimler/save32.png" runat="server" alt="Kaydet" /></asp:LinkButton>
                                     <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="Cancel" ToolTip="İptal"
-                                        CommandArgument=''><img src="~/Styles/Resimler/cancel.png" runat="server" alt="İptal" /></asp:LinkButton>
+                                        CommandArgument=''><img src="~/Styles/Resimler/cancel32.png" runat="server" alt="İptal" /></asp:LinkButton>
                                 
                                         </EditItemTemplate>
                                    
                                 <FooterTemplate>
                                     <asp:LinkButton ID="lnkInsert" runat="server" Text=""  ValidationGroup="newGrp" CommandName="InsertNew" ToolTip="Add New Entry"
-                                        CommandArgument=''><img src="~/Styles/Resimler/add.png" runat="server" alt="Insert" /></asp:LinkButton>
+                                        CommandArgument=''><img src="~/Styles/Resimler/add32.png" runat="server" alt="Insert" /></asp:LinkButton>
                                     <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" ToolTip="İptal"
-                                        CommandArgument=''><img src="~/Styles/Resimler/cancel.png" runat="server" alt="İptal"/></asp:LinkButton>
+                                        CommandArgument=''><img src="~/Styles/Resimler/cancel32.png" runat="server" alt="İptal"/></asp:LinkButton>
                                 </FooterTemplate>
                             </asp:TemplateField>
                           
                               
                             <asp:TemplateField HeaderText="KategoriAdı">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txtKategoriAdı" runat="server" Text='<%# Bind("KategoriAdı") %>' CssClass="" MaxLength="30"></asp:TextBox>
+                                    <asp:TextBox ID="txtKategoriAdı" runat="server" Text='<%# Bind("Ad") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lblKategoriAdı" runat="server" Text='<%# Bind("KategoriAdı") %>'></asp:Label>
+                                    <asp:Label ID="lblKategoriAdı" runat="server" Text='<%# Bind("Ad") %>'></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
                                    <asp:TextBox ID="txtYeniKategoriAdı" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
