@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CommerceModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="CicekciEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="İnceleme" EntityType="CommerceModel.İnceleme" />
+    <EntitySet Name="Kategorilers" EntityType="CommerceModel.Kategoriler" />
+    <EntitySet Name="Sepets" EntityType="CommerceModel.Sepet" />
+    <EntitySet Name="SiparişDetay" EntityType="CommerceModel.SiparişDetay" />
+    <EntitySet Name="Siparişler" EntityType="CommerceModel.Siparişler" />
+    <EntitySet Name="Ürün" EntityType="CommerceModel.Ürün" />
+    <EntitySet Name="ViewOrderDetails" EntityType="CommerceModel.ViewOrderDetails" />
+    <EntitySet Name="ViewAlsoPurchaseds" EntityType="CommerceModel.ViewAlsoPurchased" />
+    <EntitySet Name="ViewCarts" EntityType="CommerceModel.ViewCart" />
+    <AssociationSet Name="FK_Reviews_Products" Association="CommerceModel.FK_Reviews_Products">
+      <End Role="Ürün" EntitySet="Ürün" />
+      <End Role="İnceleme" EntitySet="İnceleme" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Categories" Association="CommerceModel.FK_Products_Categories">
+      <End Role="Kategoriler" EntitySet="Kategorilers" />
+      <End Role="Ürün" EntitySet="Ürün" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShoppingCart_Products" Association="CommerceModel.FK_ShoppingCart_Products">
+      <End Role="Ürün" EntitySet="Ürün" />
+      <End Role="Sepet" EntitySet="Sepets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_OrderDetails" Association="CommerceModel.FK_Order_OrderDetails">
+      <End Role="Siparişler" EntitySet="Siparişler" />
+      <End Role="SiparişDetay" EntitySet="SiparişDetay" />
+    </AssociationSet>
+    <FunctionImport Name="SelectPurchasedWithProducts" ReturnType="Collection(CommerceModel.SelectPurchasedWithProducts_Result)">
+      <Parameter Name="ÜrünID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="İnceleme">
+    <Key>
+      <PropertyRef Name="İncelemeID" />
+    </Key>
+    <Property Name="İncelemeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ÜrünID" Type="Int32" Nullable="false" />
+    <Property Name="MüşteriAdı" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="MüşteriEmail" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Derecelendirme" Type="Int32" Nullable="false" />
+    <Property Name="Yorum" Type="String" MaxLength="3850" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Ürün" Relationship="CommerceModel.FK_Reviews_Products" FromRole="İnceleme" ToRole="Ürün" />
+  </EntityType>
+  <EntityType Name="Kategoriler">
+    <Key>
+      <PropertyRef Name="KategoriID" />
+    </Key>
+    <Property Name="KategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAdı" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Ürün" Relationship="CommerceModel.FK_Products_Categories" FromRole="Kategoriler" ToRole="Ürün" />
+  </EntityType>
+  <EntityType Name="Sepet">
+    <Key>
+      <PropertyRef Name="KayıtID" />
+    </Key>
+    <Property Name="KayıtID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KartID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Miktar" Type="Int32" Nullable="false" />
+    <Property Name="ÜrünID" Type="Int32" Nullable="false" />
+    <Property Name="OluşturmaTarihi" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Ürün" Relationship="CommerceModel.FK_ShoppingCart_Products" FromRole="Sepet" ToRole="Ürün" />
+  </EntityType>
+  <EntityType Name="SiparişDetay">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiparişID" Type="Int32" />
+    <Property Name="ÜrünID" Type="Int32" />
+    <Property Name="Miktar" Type="Int32" />
+    <Property Name="BirimFiyat" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Siparişler" Relationship="CommerceModel.FK_Order_OrderDetails" FromRole="SiparişDetay" ToRole="Siparişler" />
+  </EntityType>
+  <EntityType Name="Siparişler">
+    <Key>
+      <PropertyRef Name="SiparişID" />
+    </Key>
+    <Property Name="SiparişID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MüşteriAdı" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="SiparişTarihi" Type="DateTime" Nullable="false" />
+    <Property Name="SevkTarihi" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="SiparişDetay" Relationship="CommerceModel.FK_Order_OrderDetails" FromRole="Siparişler" ToRole="SiparişDetay" />
+  </EntityType>
+  <EntityType Name="Ürün">
+    <Key>
+      <PropertyRef Name="ÜrünID" />
+    </Key>
+    <Property Name="ÜrünID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriID" Type="Int32" Nullable="false" />
+    <Property Name="ModelNumarası" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ModelAdı" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ÜrünResmi" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="BirimFiyat" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Tanım" Type="String" MaxLength="3800" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="İnceleme" Relationship="CommerceModel.FK_Reviews_Products" FromRole="Ürün" ToRole="İnceleme" />
+    <NavigationProperty Name="Kategoriler" Relationship="CommerceModel.FK_Products_Categories" FromRole="Ürün" ToRole="Kategoriler" />
+    <NavigationProperty Name="Sepets" Relationship="CommerceModel.FK_ShoppingCart_Products" FromRole="Ürün" ToRole="Sepet" />
+  </EntityType>
+  <EntityType Name="ViewOrderDetails">
+    <Key>
+      <PropertyRef Name="ÜrünID" />
+    </Key>
+    <Property Name="ÜrünID" Type="Int32" Nullable="false" />
+    <Property Name="ModelNumarası" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ModelAdı" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Miktar" Type="Int32" />
+    <Property Name="BirimFiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="SiparişID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ViewAlsoPurchased">
+    <Key>
+      <PropertyRef Name="Ürün_ÜrünID" />
+    </Key>
+    <Property Name="ÜrünID" Type="Int32" />
+    <Property Name="ModelAdı" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TotalNumPurchased" Type="Int32" />
+    <Property Name="SiparişID" Type="Int32" />
+    <Property Name="Ürün_ÜrünID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewCart">
+    <Key>
+      <PropertyRef Name="ÜrünID" />
+      <PropertyRef Name="BirimFiyat" />
+      <PropertyRef Name="Miktar" />
+    </Key>
+    <Property Name="ÜrünID" Type="Int32" Nullable="false" />
+    <Property Name="ModelNumarası" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ModelAdı" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="BirimFiyat" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Miktar" Type="Int32" Nullable="false" />
+    <Property Name="KartID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Reviews_Products">
+    <End Role="Ürün" Type="CommerceModel.Ürün" Multiplicity="1" />
+    <End Role="İnceleme" Type="CommerceModel.İnceleme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ürün">
+        <PropertyRef Name="ÜrünID" />
+      </Principal>
+      <Dependent Role="İnceleme">
+        <PropertyRef Name="ÜrünID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Categories">
+    <End Role="Kategoriler" Type="CommerceModel.Kategoriler" Multiplicity="1" />
+    <End Role="Ürün" Type="CommerceModel.Ürün" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategoriler">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="Ürün">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShoppingCart_Products">
+    <End Role="Ürün" Type="CommerceModel.Ürün" Multiplicity="1" />
+    <End Role="Sepet" Type="CommerceModel.Sepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ürün">
+        <PropertyRef Name="ÜrünID" />
+      </Principal>
+      <Dependent Role="Sepet">
+        <PropertyRef Name="ÜrünID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_OrderDetails">
+    <End Role="Siparişler" Type="CommerceModel.Siparişler" Multiplicity="0..1" />
+    <End Role="SiparişDetay" Type="CommerceModel.SiparişDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Siparişler">
+        <PropertyRef Name="SiparişID" />
+      </Principal>
+      <Dependent Role="SiparişDetay">
+        <PropertyRef Name="SiparişID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SelectPurchasedWithProducts_Result">
+    <Property Type="Int32" Name="ÜrünID" Nullable="true" />
+    <Property Type="String" Name="ModelAdı" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="TotalNum" Nullable="true" />
+  </ComplexType>
+</Schema>
