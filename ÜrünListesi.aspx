@@ -3,7 +3,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <asp:ListView ID="ListView1" runat="server"
-        DataKeyNames="Id" GroupItemCount="4">
+        DataKeyNames="Id" GroupItemCount="3">
         <EmptyDataTemplate>
             <table>
                 <tr>
@@ -21,16 +21,16 @@
         </GroupTemplate>
         <ItemTemplate>
             <td runat="server" >
-                <table>
+                <table style="border-style: outset;">
                     <tr>
                         <td>
                             <a href='ÜrünDetayı.aspx?ÜrünId=<%# Eval("Id") %>'>
                                 <image src='ÜrünKatalog/Kucuk/<%# Eval("Resim") %>'
-                                    width="100" height="75" border="1" />
+                                    width="278" height="306" border="1" />
                             </a>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="text-align:center">
                         <td>
                             <a href='ÜrünDetayı.aspx?ÜrünId=<%# Eval("Id") %>' style="color: #2fa4e7">
                                 <%#:Eval("Ad")%>
@@ -40,11 +40,12 @@
                                 <b>Fiyat: </b><%# Eval("BirimFiyat", "{0:c}")%>
                             </span>
                             <br />
-                            <a href='SepeteEkle.aspx?ÜrünId=<%# Eval("Id") %>'>
+                            <asp:Button runat="server" Text="Sepete Ekle" Width="150" ForeColor="White" Height="50" BackColor="#145A32"  PostBackUrl='<%# String.Format("sepeteekle.aspx?ÜrünId={0}",Eval("Id")) %>'/>
+                           <%-- <a href='SepeteEkle.aspx?ÜrünId=<%# Eval("Id") %>'>
                                 <span style="color: #2fa4e7">
                                     <b>Sepete Ekle<b>
                                         </span>
-                            </a>
+                            </a>--%>
                         </td>
                     </tr>
                     <tr>

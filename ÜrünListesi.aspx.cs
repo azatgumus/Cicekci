@@ -20,5 +20,11 @@ namespace Cicekci
             ListView1.DataSource = x.ToList();
             ListView1.DataBind();
         }
+
+        //protected void SepeteEkle(object sender, EventArgs e)
+        //{
+        //    var argument = ((Button)sender).CommandArgument;
+        //    Response.Redirect("SepeteEkle.aspx?ÜrünId=");
+        //}
     }
 }

@@ -62,7 +62,7 @@
 			</div>
 		</div>
  		<div id="leftColumn">
-			<h3>Ürünlerimiz</h3>
+			<h3>Kategoriler</h3>
             <asp:ListView ID="ListView_Ürün_Menu" runat="server" DataSourceID="SqlDataSource1">
                 <EmptyDataTemplate>Ürün Yok.</EmptyDataTemplate>
                 <ItemSeparatorTemplate></ItemSeparatorTemplate>

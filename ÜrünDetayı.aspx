@@ -19,9 +19,6 @@
       </table>
       <span class="UnitCost"><b>Fiyatı:</b> <%# Eval("BirimFiyat", "{0:c}")%>'
       <br /> 
-      <%--<span class="ModelNumber">
-        <b>Model Numarası:</b> <%# Eval("ModelNumarası") %>
-      </span><br />--%>
       
       <a href='SepeteEkle.aspx?ürünID=<%# Eval("Id") %>' class="SiteLink"> 
         <img id="Img1" src="~/Styles/Resimler/cart.gif" runat="server"  
