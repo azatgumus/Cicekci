@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web.UI.WebControls;
 using Cicekci.DataAccess;
 using System.IO;
-
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Cicekci.Admin
 {
@@ -103,7 +104,7 @@ namespace Cicekci.Admin
                 FileUpload fileUpload = row.FindControl("FileUpload2") as FileUpload;
                 TextBox txtUrunAdi = row.FindControl("txtYeniUrunAdi") as TextBox;
                 TextBox txtBirimFiyat = row.FindControl("txtYeniBirimFiyat") as TextBox;
-                TextBox txtAciklama= row.FindControl("txtYeniAciklama") as TextBox;
+                TextBox txtAciklama = row.FindControl("txtYeniAciklama") as TextBox;
 
                 if (txtUrunAdi != null)
                 {
@@ -115,7 +116,25 @@ namespace Cicekci.Admin
                             string uzantı = Path.GetExtension(fileUpload.PostedFile.FileName);
                             if (uzantılar.Contains(uzantı))
                             {
-                                fileUpload.SaveAs(System.IO.Path.Combine(Server.MapPath(@"~/ÜrünKatalog"), fileUpload.FileName));
+                                //resize and save images
+                                //small
+                                System.Drawing.Image img = System.Drawing.Image.FromStream(fileUpload.PostedFile.InputStream);
+                                var imageSmall = ResizeImage(img, new Size(278, 306));
+                                var path1 = (System.IO.Path.Combine(Server.MapPath(@"~/ÜrünKatalog/Kucuk"), fileUpload.FileName));
+                                if (!File.Exists(path1))
+                                {
+                                    imageSmall.Save(path1);
+                                }
+                                else
+                                {
+                                    lblMessage.Text = $"'{fileUpload.FileName}' adında resim zaten var.";
+                                    return;
+                                }
+
+                                //big
+                                var path2 = (System.IO.Path.Combine(Server.MapPath(@"~/ÜrünKatalog/Buyuk"), fileUpload.FileName));
+                                var imageLarge = ResizeImage(img, new Size(582, 640));
+                                imageLarge.Save(path2);
 
                             }
 
@@ -221,6 +240,63 @@ namespace Cicekci.Admin
 
         }
 
+
+        private static System.Drawing.Image ResizeImage(System.Drawing.Image imgToResize, Size size)
+
+        {
+            //Get the image current width
+            int sourceWidth = imgToResize.Width;
+            //Get the image current height
+            int sourceHeight = imgToResize.Height;
+
+            float nPercent = 0;
+
+            float nPercentW = 0;
+
+            float nPercentH = 0;
+
+            //Calulate  width with new desired size
+            nPercentW = ((float)size.Width / (float)sourceWidth);
+
+            //Calculate height with new desired size
+
+            nPercentH = ((float)size.Height / (float)sourceHeight);
+
+
+
+            if (nPercentH < nPercentW)
+
+                nPercent = nPercentH;
+
+            else
+
+                nPercent = nPercentW;
+
+            //New Width
+
+            int destWidth = (int)(sourceWidth * nPercent);
+
+            //New Height
+
+            int destHeight = (int)(sourceHeight * nPercent);
+
+
+
+            Bitmap b = new Bitmap(destWidth, destHeight);
+
+            Graphics g = Graphics.FromImage((System.Drawing.Image)b);
+
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            // Draw image with new width and height
+
+            g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
+
+            g.Dispose();
+
+            return (System.Drawing.Image)b;
+
+        }
 
 
     }

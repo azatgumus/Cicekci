@@ -9,7 +9,7 @@
       <table  border="0">
         <tr>
           <td >
-            <img src='ÜrünKatalog/<%# Eval("Resim") %>'  border="0"  alt='<%# Eval("Ad") %>'  />
+            <img src='ÜrünKatalog/Buyuk/<%# Eval("Resim") %>'  border="0"  alt='<%# Eval("Ad") %>'  />
           </td>
           <td><%# Eval("Aciklama") %>
             <br /><br /><br />                

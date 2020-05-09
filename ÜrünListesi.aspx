@@ -25,7 +25,7 @@
           <td>&nbsp</td>
           <td>
             <a href='ÜrünDetayı.aspx?ÜrünId=<%# Eval("Id") %>'>
-               <image src='ÜrünKatalog/<%# Eval("Resim") %>' 
+               <image src='ÜrünKatalog/Kucuk/<%# Eval("Resim") %>' 
                       width="100" height="125" border="0">
             </a> &nbsp
           </td>

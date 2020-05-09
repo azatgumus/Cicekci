@@ -88,7 +88,7 @@
 
                     <asp:TemplateField HeaderText="Ürün Resmi">
                         <ItemTemplate>
-                            <asp:Image ID="Image1" runat="server" Height="70px" ImageUrl='<%# Eval("Resim","~/ÜrünKatalog/{0}") %>' Width="80" />
+                            <asp:Image ID="Image1" runat="server" Height="70px" ImageUrl='<%# Eval("Resim","~/ÜrünKatalog/kucuk/{0}") %>' Width="80" />
                         </ItemTemplate>
                         <EditItemTemplate>
                             <asp:FileUpload ID="FileUpload1" runat="server" />

@@ -177,8 +177,6 @@
     </Content>
     <Content Include="SiparişKayıt.aspx" />
     <Content Include="ÜrünDetayı.aspx" />
-    <Content Include="ÜrünKatalog\AnaSayfa\orkide.jpg" />
-    <Content Include="ÜrünKatalog\Detay\orkide.jpg" />
     <Content Include="ÜrünListesi.aspx" />
     <Content Include="İletişim.aspx" />
   </ItemGroup>
@@ -359,6 +357,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Mails\" />
+    <Folder Include="ÜrünKatalog\Buyuk\" />
+    <Folder Include="ÜrünKatalog\Kucuk\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
