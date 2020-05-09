@@ -127,7 +127,7 @@ namespace Cicekci.Admin
                                 }
                                 else
                                 {
-                                    lblMessage.Text = $"'{fileUpload.FileName}' adında resim zaten var.";
+                                    lblMessage.Text = $"'{fileUpload.FileName}' Adında Resim Zaten Mevcut.";
                                     return;
                                 }
 
