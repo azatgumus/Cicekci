@@ -15,7 +15,7 @@ namespace Cicekci.Account
             if (IsPostBack) return;
 
             UnitOfWork uow = new UnitOfWork();
-            GridView_SiparişListesi.DataSource = uow.SiparisRepository.Get(x=>x.MusteriAdi==HttpContext.Current.User.Identity.Name).OrderByDescending(x=>x.SiparisTarihi).ToList();
+            GridView_SiparişListesi.DataSource = uow.SiparisRepository.Get(x=>x.FaturaAdSoyad==HttpContext.Current.User.Identity.Name).OrderByDescending(x=>x.SiparisTarihi).ToList();
             GridView_SiparişListesi.DataBind();
         }
     }

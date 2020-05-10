@@ -138,16 +138,9 @@ namespace Cicekci
         }
 
         //------------------------------------------------------------------------------------------------------------------------------------------+
-        public bool SiparişiGönder(string kartNo,string adSoyad)
+        public bool SiparişiGönder(Siparis siparis)
         {
-            _uow.SiparisRepository.Insert(new Siparis
-            {
-                KartNo = kartNo,
-                SiparisTarihi = DateTime.Now,
-                Id = Session["SepetId"].ToString(),
-                MusteriAdi = adSoyad
-                //TODO UyeId
-            });
+            _uow.SiparisRepository.Insert(siparis);
             _uow.Save();
             return true;
         }

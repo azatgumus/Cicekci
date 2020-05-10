@@ -147,20 +147,19 @@ blockquote, pre
 	color: #E0E8EF;
 }
 
-#subheader
-{
-	position: relative;
-	background:aqua;
-	height: 27px;
-	padding-left: 20px;
-	padding-top: 10px;
+#subheader {
+    position: relative;
+    background: #145A32;
+    height: 27px;
+    padding-left: 20px;
+    padding-top: 10px;
     top: 1px;
     left: 0px;
 }
 
 #subheader a
 {
-    color:  black;
+    color:  white;
     font-family: Verdana, Helvetica, sans-serif;
     text-decoration: none;
     font-size:  12px;
@@ -328,8 +327,8 @@ blockquote, pre
 	text-align: left;
 	float: left;
 	width: 14em;
-	padding: 2em 1.5em 2em;
-	background: #fff url('Resimler/a1.gif') repeat-y right top;
+	padding: 1em 1em 1em;
+	/*background: #fff url('Resimler/a1.gif') repeat-y right top;*/
     top: 1px;
     left: 0px;
     height: 100%;
@@ -337,8 +336,8 @@ blockquote, pre
 
 #leftColumn a
 {
-color: Black;
-font-weight: bold;
+/*color: Black;*/
+/*font-weight: bold;*/
 text-decoration: none;
 }
 
@@ -413,7 +412,7 @@ text-decoration: none;
     height: 35px; 
     vertical-align: middle; 
     padding-top: 5px;
-    padding-left: 5px;
+    padding-left: 250px;
     text-align: left;
 }
 
@@ -426,7 +425,8 @@ text-decoration: none;
     font-size: 18px;
     font-weight: bold;
     height: 30px;
-    padding: 0px 10px 0px 10px;
+    padding-left:250px;
+    /*padding: 0px 10px 0px 50px;*/
 }
 
 /* */
@@ -455,13 +455,13 @@ text-decoration: none;
     font-size: 12px;
     line-height: 20pt
 }
-.MostPopularHead
-{
-    background-color:  aqua;
-    color: green;
+.MostPopularHead {
+    background-color: #145A32;
+    color: white;
     font-family: Verdana, Arial;
     font-size: 11px;
-    font-weight: bold
+    font-weight: bold;
+    text-align:center;
 }
 
 A.MostPopularItemText, A.MostPopularItemText:link, A.MostPopularItemText:visited
@@ -878,5 +878,8 @@ div.accountInfo
 .masterlink {
     font-weight: bold;
     font-size:11px;
+}
+.hidden {
+    display: none;
 }
 

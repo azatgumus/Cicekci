@@ -4,8 +4,8 @@
 <%@ Register Src="~/Kontroller/PopülerÜrünler.ascx" TagPrefix="uc1" TagName="PopülerÜrünler" %>
 
 
-<asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
-</asp:Content>
+<%--<asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
+</asp:Content>--%>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
     <h2>
   <asp:LoginView ID="LoginView_VisitorGreeting" runat="server">
@@ -18,7 +18,6 @@
   </asp:LoginView>
 </h2>
 
-<p>Ev ürünlerinde öncü olan mağazamızdan online alış-veriş yapmanın kolaylığını yaşayın. </p>
 
     
 <table>
