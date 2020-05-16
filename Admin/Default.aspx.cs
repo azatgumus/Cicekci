@@ -67,8 +67,8 @@ namespace Cicekci.Admin
                     GridView1.DataSource = kategoriQuery.ToList();
                 }
 
+               
                 GridView1.DataBind();
-
 
                 if (kategoriQuery.Count() == 0 && id != 0 && id != -1)
                 {
@@ -105,6 +105,7 @@ namespace Cicekci.Admin
                 TextBox txtUrunAdi = row.FindControl("txtYeniUrunAdi") as TextBox;
                 TextBox txtBirimFiyat = row.FindControl("txtYeniBirimFiyat") as TextBox;
                 TextBox txtAciklama = row.FindControl("txtYeniAciklama") as TextBox;
+                CheckBox chkPopuler = row.FindControl("chkYeniPopuler") as CheckBox;
 
                 if (txtUrunAdi != null)
                 {
@@ -149,6 +150,7 @@ namespace Cicekci.Admin
                             obj.BirimFiyat = Convert.ToDecimal(txtBirimFiyat.Text);
                             obj.Aciklama = txtAciklama.Text;
                             obj.Resim = fileUpload.FileName;
+                            obj.CokSatan = chkPopuler.Checked;
                             db.Urun.Add(obj);
                             db.SaveChanges();
                             lblMessage.Text = "Başarıyla eklendi.";
@@ -183,6 +185,7 @@ namespace Cicekci.Admin
             TextBox txtUrunAdi = row.FindControl("txtUrunAdi") as TextBox;
             TextBox txtBirimFiyat = row.FindControl("txtBirimFiyat") as TextBox;
             TextBox txtAciklama = row.FindControl("txtAciklama") as TextBox;
+            CheckBox chkPopuler = row.FindControl("chkPopuler") as CheckBox;
 
 
 
@@ -206,6 +209,7 @@ namespace Cicekci.Admin
                     }
 
                     obj.Ad = txtUrunAdi.Text;
+                    obj.CokSatan = chkPopuler.Checked;
                     obj.BirimFiyat = Convert.ToDecimal(txtBirimFiyat.Text);
                     obj.Aciklama = txtAciklama.Text;
 

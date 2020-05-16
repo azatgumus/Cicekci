@@ -12,7 +12,7 @@ namespace Cicekci.Kontroller
             {
                 try
                 {
-                    var query = db.Urun.Where(x => x.CokSatan == true).Take(5);
+                    var query = db.Urun.Where(x => x.CokSatan == true);
 
                     ListView1.DataSource = query.ToList();
                     ListView1.DataBind();

@@ -5,17 +5,20 @@
     <br />
     <br />
     <div id="centerColumn">
-        <div style="text-align: left;padding:2em 1.5em 2em;height: 100%;width: 10em;position: relative;float: left;">
+        <div style="text-align: left; padding: 2em 1.5em 2em; height: 100%; width: 10em; position: relative; float: left;">
         </div>
         <asp:Label runat="server" ID="lblMessage"></asp:Label>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" ShowFooter="True" AllowSorting="true"
-            CssClass="grid" OnRowCommand="gridSample_RowCommand"
+            OnRowCommand="gridSample_RowCommand"
+            GridLines="Vertical"
+             Width="100%"
+            AlternatingRowStyle-BackColor="#99ff99"
             DataKeyNames="Id" CellPadding="4" ForeColor="#333333"
-            GridLines="None" OnRowCancelingEdit="gridSample_RowCancelingEdit"
+            OnRowCancelingEdit="gridSample_RowCancelingEdit"
             OnRowEditing="gridSample_RowEditing"
             OnRowUpdating="gridSample_RowUpdating"
             OnRowDeleting="gridSample_RowDeleting" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1">
-            <AlternatingRowStyle BackColor="White" />
+            <%--<AlternatingRowStyle BackColor="White" />--%>
             <Columns>
                 <asp:TemplateField HeaderText="">
                     <ItemTemplate>
@@ -58,8 +61,8 @@
 
             </Columns>
             <EditRowStyle BackColor="#2461BF" />
-            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <FooterStyle BackColor="#145A32" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#145A32" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
             <RowStyle BackColor="#EFF3FB" />
             <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />

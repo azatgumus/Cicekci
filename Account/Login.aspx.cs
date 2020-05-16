@@ -66,6 +66,10 @@ namespace Cicekci.Account
                 {
                     Response.Redirect("~/Admin/Default.aspx");
                 }
+                else if(uye.RolId==1 && Session["LoginReferrer"]!=null && !Session["LoginReferrer"].ToString().Contains("Sepetim"))
+                {
+                    Response.Redirect("~/Ürünlistesi.aspx?kategoriId=6");
+                }
                 //standart
                 if (Session["LoginReferrer"] == null)
                 {

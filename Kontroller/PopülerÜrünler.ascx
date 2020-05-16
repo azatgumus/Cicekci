@@ -40,7 +40,7 @@
                                 <b>Fiyat: </b><%# Eval("BirimFiyat", "{0:c}")%>
                             </span>
                             <br />
-                            <asp:Button runat="server" Text="Sepete Ekle" Width="150" ForeColor="White" Height="50" BackColor="#145A32"  PostBackUrl='<%# String.Format("sepeteekle.aspx?ÜrünId={0}",Eval("Id")) %>'/>
+                            <asp:Button runat="server" Text="Sepete Ekle" Width="150" ForeColor="White" Height="50" BackColor="#145A32"  PostBackUrl='<%# String.Format("~/sepeteekle.aspx?ÜrünId={0}",Eval("Id")) %>'/>
                            <%-- <a href='SepeteEkle.aspx?ÜrünId=<%# Eval("Id") %>'>
                                 <span style="color: #2fa4e7">
                                     <b>Sepete Ekle<b>

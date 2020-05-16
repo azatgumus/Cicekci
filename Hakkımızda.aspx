@@ -3,18 +3,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <p>Vizyon / Misyon
-Vizyonumuz, Dünya'nın en sevilen ve tercih edilen ev-yaşam tarzı markası olmak.
+Vizyonumuz, Dünya'nın en sevilen ve tercih edilen markası olmak.
 
-Misyonumuz, müşterilerimizin hayal ettiği yaşam tarzını kendi evleri için ulaşılabilir kılmaktır.</p>
+Misyonumuz, müşterilerimizi içinde olmayı hayal ettikleri bahçelerinde hissetirmeyi sağlamaktır.</p>
 
 <div>
-                <p>Türkiye ve bölgenin lider e-ticaret platfomu Çiçekçi, Türkiye’de dijital dönüşümün öncülüğünü yapıyor, marka ve işletmeleri platformunda milyonlarca müşteri ile bir araya getiriyor,  perakendenin gelişimini ve yerel ekonomilerin büyümesini destekliyor.</p>
-                <p>1998 yılında ilk tohumları atılan platform, 1990 yılında Çiçekçi markasıyla Doğan Online’ın bir parçası olarak hayatına devam etmeye başladı. Bugün Çiçekçi, geldiği konum itibarıyla Türkiye ve bölgesinin en büyük e-ticaret şirketi olmakla beraber, Türkiye’de internet ve teknoloji alanındaki şirketler arasında lider olarak kabul ediliyor.</p>
-                <p>Çiçekçi; 2001 yılından bu yana, dijital dönüşümü desteklemeye ve perakende sektörü ile el ele büyümeye devam ediyor. E-ticarette müşteri deneyimi ve alışverişi kolaylaştıran çözümleriyle geniş kategori ve ürün seçeneklerini tek tıkla müşterilerinin ayağına taşıyor.    Çiçekçi, müşterilerine sunduğu kolaylıklar ve avantajlarla online alışveriş alışkanlığının yaygınlaşmasına, e-ticaret sektörünün gelişmesine öncülük ediyor. </p>
-                <p>Kurucusu Ali Rıza’in vizyonunun bir sonucu olarak; online perakende hizmetini Türkiye’nin dört bir yanına ulaştırırken, tüm paydaşlarının hayatını kolaylaştırıyor. </p>
-                <p>Çiçekçi “Çiçekçi” e-ihracat atılımıyla da platformdaki işletmeleri, markaları ve kaliteli Türk ürünlerini dünya pazarlarıyla ve milyonlaca yeni müşteri ile buluşturuyor.</p>
-                <p>Kuruluşundan bugüne hızlı büyümesini sürdüren Çiçekçi, bugün yaklaşık 40 kategoride, onlarca milyon ürün çeşidiyle aylık 100 milyondan fazla ziyarete ev sahipliği yapıyor. Geniş ürün yelpazesiyle ziyaretçilerinin tüm ihtiyaçlarını karşılayan Çiçekçi, ürün çeşitliliğini ve hizmet kolaylıklarını da her geçen gün yeni yatırım ve işbirlikleriyle artırarak müşterilerine sunmaya devam ediyor. </p>
-                <p>Başarılarını aldığı ödüllerle her geçen gün taçlandırmaya devam eden Çiçekçi, Türkiye’nin dijital dönüşümüne katkıda bulunurken müşterilerine en iyi hizmeti sunmaya devam etmek için çalışmalarını sürdürüyor.</p>
+                <p>Türkiye ve bölgenin lider e-ticaret çiçek platfomu Cicekcim.com, çiçekçilik sektöründe Türkiye’de dijital öncülüğünü yapmaktadır.Cicekcim.com markası milyonlarca müşteriyi bir araya getirmektedir.</p>
+                <p>2010 yılında ilk tohumları atılan Cicekcim.com platformu, Bugün geldiği konum itibarıyla Türkiye ve bölgede en sık ziyaret edilen satış sitesi olarak faaliyetlerine devam etmektedir.</p>
+                <p>Cicekcim.com; 2020 yılı itibariyle, tüm müşterilerimizin en unutulmaz anlarına sadece bir tık uzaklıktayız.</p>
+                <p>Sitemiz online platform üzerinden binlerce çeşit ürünü alıcılarıyla buluşturmaktadır.</p>
+                <p>Sitemiz Kişisel Verilerin Korunması KAnunu kapsamında siz değerli müşterilerimizin bilgilerini en sıkı şekilde muhafaza etmektedir.</p>
+                <p>Cicekcim.com, ürün çeşitliliğini ve hizmet kolaylıklarını da her geçen gün yeni yatırım ve işbirlikleriyle artırarak müşterilerine sunmaya devam ediyor. </p>
+                <p>Başarılarını aldığı ödüllerle her geçen gün taçlandırmaya devam eden Cicekcim.com Türkiye’nin dijital dönüşümüne katkıda bulunurken müşterilerine en iyi hizmeti sunmaya devam etmek için çalışmalarını sürdürüyor.</p>
+                <p>Bugünden yarına güvenilir adresiniz olmaya talibiz.</p>
+                <p>Saygılarımızla.</p>
             </div>
 
 </asp:Content>

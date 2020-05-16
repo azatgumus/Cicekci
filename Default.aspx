@@ -10,7 +10,7 @@
     <h2>
   <asp:LoginView ID="LoginView_VisitorGreeting" runat="server">
     <AnonymousTemplate>
-        Mağazamıza Hoş Geldiniz
+        Bahçenize Hoş Geldiniz
     </AnonymousTemplate>
     <LoggedInTemplate>
       Hoşgeldin <asp:LoginName ID="LoginName_Welcome" runat="server" /> 
