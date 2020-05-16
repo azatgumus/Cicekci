@@ -15,7 +15,7 @@ Misyonumuz, müşterilerimizi içinde olmayı hayal ettikleri bahçelerinde hiss
                 <p>Sitemiz Kişisel Verilerin Korunması KAnunu kapsamında siz değerli müşterilerimizin bilgilerini en sıkı şekilde muhafaza etmektedir.</p>
                 <p>Cicekcim.com, ürün çeşitliliğini ve hizmet kolaylıklarını da her geçen gün yeni yatırım ve işbirlikleriyle artırarak müşterilerine sunmaya devam ediyor. </p>
                 <p>Başarılarını aldığı ödüllerle her geçen gün taçlandırmaya devam eden Cicekcim.com Türkiye’nin dijital dönüşümüne katkıda bulunurken müşterilerine en iyi hizmeti sunmaya devam etmek için çalışmalarını sürdürüyor.</p>
-                <p>Bugünden yarına güvenilir adresiniz olmaya talibiz.</p>
+                <p>Bugünden yarına güvenilir adresiniz olmaya talibiz..</p>
                 <p>Saygılarımızla.</p>
             </div>
 
