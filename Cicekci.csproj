@@ -357,7 +357,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Mails\" />
     <Folder Include="ÜrünKatalog\Buyuk\" />
     <Folder Include="ÜrünKatalog\Kucuk\" />
@@ -368,6 +367,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Admin.Master" />
+    <Content Include="App_Data\Cicekci.bak" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
