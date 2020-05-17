@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head runat="server">
     <title></title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Styles/Resimler/favicon.ico" />
     <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
@@ -62,7 +63,7 @@
         <div id="outer">
             <div id="header">
                 <div style="float: left;">
-                    <h1><a href="#">Cicekcim.com <br />Online Çiçek Bahçeniz</a></h1>
+                    <h1><a href="#"><img src="Styles/Resimler/favicon.ico" width="50px;" height="50px" alt="Site"/>Cicekcim.com <br />Online Çiçek Bahçeniz</a></h1>
                 </div>
                 <div style="float: right; vertical-align: middle;">
 
@@ -97,6 +98,7 @@
             <div id="subheader" class="style1">
                 <a href="~/Default.aspx" runat="server" title="">AnaSayfa</a>
                 <a href="~/ÜrünListesi.aspx" runat="server" title="">Ürünler</a>
+                <a href="~/ÜrünListesi.aspx?KategoriId=6" runat="server" title="">Üyelere Özel</a>
                 <a href="~/Hakkımızda.aspx" runat="server" title="">Hakkımızda</a>
                 <a href="~/İletişim.aspx" runat="server" title="">İletişim</a>
             </div>

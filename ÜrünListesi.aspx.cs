@@ -12,19 +12,29 @@ namespace Cicekci
             if (IsPostBack) return;
             UnitOfWork uow = new UnitOfWork();
             var x = uow.UrunRepository.GetAll();
-            if (Request.QueryString["KategoriId"] != null)
+            string kategoriId = Request.QueryString["KategoriId"];
+            if (kategoriId != null)
             {
-                var kategoriId = int.Parse(Request.QueryString["KategoriId"]);
-                x = x.Where(r => r.KategoriId == kategoriId);
+                var kategoriIdAsInt = int.Parse(Request.QueryString["KategoriId"]);
+                if (kategoriIdAsInt == 6 && !User.Identity.IsAuthenticated)
+                {
+                    lblMsg.Text = "Bu kategori sadece üyelerimize özel olarak sunulmaktadır.<br/>Bu kategorideki tüm ürünlere %30 iskonto uygulanmaktadır." +
+                          "Avantajlardan faydalanmak için lütfen üye olunuz. <a style='color:red' href='Account/Register.aspx'>Tıklayınız.</a>";
+                    return;
+                }
+                x = x.Where(r => r.KategoriId == kategoriIdAsInt);
             }
+            if (User.Identity.IsAuthenticated)
+            {
+                foreach (var item in x)
+                {
+                    if (item.KategoriId == 6)
+                        item.KampanyaliFiyat = Math.Round(item.BirimFiyat * Convert.ToDecimal(0.7), 2, MidpointRounding.AwayFromZero);
+                }
+            }
+
             ListView1.DataSource = x.ToList();
             ListView1.DataBind();
         }
-
-        //protected void SepeteEkle(object sender, EventArgs e)
-        //{
-        //    var argument = ((Button)sender).CommandArgument;
-        //    Response.Redirect("SepeteEkle.aspx?ÜrünId=");
-        //}
     }
 }

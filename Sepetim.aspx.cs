@@ -69,11 +69,11 @@ namespace Cicekci
             }
             var items = usersShoppingCart.SepetItems(sepetID);
 
-            decimal sepetTutari = items.Sum(od => od.Miktar * od.Urun.BirimFiyat);
+            decimal sepetTutari = items.Sum(od => od.Miktar * (od.Urun.KategoriId == 6 ? (Math.Round(od.Urun.BirimFiyat * Convert.ToDecimal(0.7), 2, MidpointRounding.AwayFromZero)) : od.Urun.BirimFiyat));
             if (sepetTutari > 0)
             {
                 lblTotal.Text = string.Format("{0:c}", sepetTutari);
-                return items.Select(x => new SepetUrun { Miktar = x.Miktar, BirimFiyat = x.Urun.BirimFiyat, Ad = x.Urun.Ad, Id = x.Urun.Id }).ToList();
+                return items.Select(x => new SepetUrun { Miktar = x.Miktar, BirimFiyat = x.Urun.KategoriId == 6 ? (Math.Round(x.Urun.BirimFiyat * Convert.ToDecimal(0.7), 2, MidpointRounding.AwayFromZero)) : x.Urun.BirimFiyat, Ad = x.Urun.Ad, Id = x.Urun.Id }).ToList();
             }
             else
             {

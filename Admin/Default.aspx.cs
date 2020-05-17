@@ -67,7 +67,7 @@ namespace Cicekci.Admin
                     GridView1.DataSource = kategoriQuery.ToList();
                 }
 
-               
+
                 GridView1.DataBind();
 
                 if (kategoriQuery.Count() == 0 && id != 0 && id != -1)
@@ -106,6 +106,7 @@ namespace Cicekci.Admin
                 TextBox txtBirimFiyat = row.FindControl("txtYeniBirimFiyat") as TextBox;
                 TextBox txtAciklama = row.FindControl("txtYeniAciklama") as TextBox;
                 CheckBox chkPopuler = row.FindControl("chkYeniPopuler") as CheckBox;
+                CheckBox chkKampanyali = row.FindControl("chkYeniKampanyali") as CheckBox;
 
                 if (txtUrunAdi != null)
                 {
@@ -151,6 +152,7 @@ namespace Cicekci.Admin
                             obj.Aciklama = txtAciklama.Text;
                             obj.Resim = fileUpload.FileName;
                             obj.CokSatan = chkPopuler.Checked;
+                            obj.Kampanyali = chkKampanyali.Checked;
                             db.Urun.Add(obj);
                             db.SaveChanges();
                             lblMessage.Text = "Başarıyla eklendi.";
@@ -186,6 +188,7 @@ namespace Cicekci.Admin
             TextBox txtBirimFiyat = row.FindControl("txtBirimFiyat") as TextBox;
             TextBox txtAciklama = row.FindControl("txtAciklama") as TextBox;
             CheckBox chkPopuler = row.FindControl("chkPopuler") as CheckBox;
+            CheckBox chkKampanyali = row.FindControl("chkKampanyali") as CheckBox;
 
 
 
@@ -210,6 +213,12 @@ namespace Cicekci.Admin
 
                     obj.Ad = txtUrunAdi.Text;
                     obj.CokSatan = chkPopuler.Checked;
+                    if(chkKampanyali.Checked)
+                    {
+                        obj.KategoriId = 6;
+                        obj.Kampanyali = true;
+                    }
+                   
                     obj.BirimFiyat = Convert.ToDecimal(txtBirimFiyat.Text);
                     obj.Aciklama = txtAciklama.Text;
 

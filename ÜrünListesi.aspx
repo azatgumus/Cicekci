@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ÜrünListesi.aspx.cs" Inherits="Cicekci.ÜrünListesi" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+    <asp:Label runat="server" ID="lblMsg" ForeColor="Red" />
     <asp:ListView ID="ListView1" runat="server"
         DataKeyNames="Id" GroupItemCount="3">
         <EmptyDataTemplate>
@@ -20,40 +20,41 @@
             </tr>
         </GroupTemplate>
         <ItemTemplate>
-            <td runat="server" >
-                <table style="border-style: outset;">
+            <td runat="server">
+                <table style="border-style: outset; height: 520px">
                     <tr>
                         <td>
                             <a href='ÜrünDetayı.aspx?ÜrünId=<%# Eval("Id") %>'>
                                 <image src='ÜrünKatalog/Kucuk/<%# Eval("Resim") %>'
-                                    width="278" height="306" border="1" />
-                            </a>
-                        </td>
+                                    width="278" height="306" border="1" /></td>
                     </tr>
-                    <tr style="text-align:center">
+                    <tr style="text-align: center">
                         <td>
                             <a href='ÜrünDetayı.aspx?ÜrünId=<%# Eval("Id") %>' style="color: #2fa4e7">
                                 <%#:Eval("Ad")%>
                             </a>
-                            <br />
-                            <span>
-                                <b>Fiyat: </b><%# Eval("BirimFiyat", "{0:c}")%>
-                            </span>
-                            <br />
-                            <asp:Button runat="server" Text="Sepete Ekle" Width="150" ForeColor="White" Height="50" BackColor="#145A32"  PostBackUrl='<%# String.Format("sepeteekle.aspx?ÜrünId={0}",Eval("Id")) %>'/>
-                           <%-- <a href='SepeteEkle.aspx?ÜrünId=<%# Eval("Id") %>'>
-                                <span style="color: #2fa4e7">
-                                    <b>Sepete Ekle<b>
-                                        </span>
-                            </a>--%>
                         </td>
                     </tr>
+                    <tr style="text-align: center">
+                        <td><b>Fiyat: </b><span><%# Eval("BirimFiyat", "{0:c}")%></span></td>
+                    </tr>
+                    <tr style="text-align: center" runat="server" visible='<%# ((decimal)Eval("KampanyaliFiyat")) == 0 ? false : true %>'>
+                        <td>
+                            <span style="color: red; font-style: italic">Kampanyalı Fiyat : <%# Eval("KampanyaliFiyat")%></span>
+                        </td>
+                    </tr>
+                    <tr style="text-align: center">
+                        <td>
+                            <asp:Button runat="server" Text="Sepete Ekle" Width="150" ForeColor="White" Height="50" BackColor="#145A32" PostBackUrl='<%# String.Format("sepeteekle.aspx?ÜrünId={0}",Eval("Id")) %>' />
+                        </td>
+                    </tr>
+
                     <tr>
                         <td>&nbsp;</td>
                     </tr>
                 </table>
                 </p>
-                    </td>
+            </td>
         </ItemTemplate>
         <LayoutTemplate>
             <table style="width: 100%;">
@@ -72,7 +73,7 @@
                 </tbody>
             </table>
         </LayoutTemplate>
-         
+
     </asp:ListView>
 
 </asp:Content>

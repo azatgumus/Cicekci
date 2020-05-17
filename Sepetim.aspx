@@ -30,10 +30,10 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField>
+            <asp:TemplateField >
                 <HeaderTemplate>Ürün Tutarı</HeaderTemplate>
                 <ItemTemplate>
-                    <%# (Convert.ToDouble(Eval("Miktar")) *  Convert.ToDouble(Eval("BirimFiyat")))%>
+                    <%# string.Format("{0:c}",Convert.ToDouble(Eval("Miktar")) *  Convert.ToDouble(Eval("BirimFiyat")))%>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField>

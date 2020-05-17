@@ -3,6 +3,7 @@ namespace Cicekci.DataAccess
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class Urun
     {
@@ -22,6 +23,10 @@ namespace Cicekci.DataAccess
         [MaxLength(100), Required]
         public string Ad { get; set; }
         public Nullable<bool> CokSatan { get; set; }
+        public Nullable<bool> Kampanyali { get; set; }
+
+        [NotMapped]
+        public decimal KampanyaliFiyat { get; set; }
 
         public virtual Kategori Kategori { get; set; }
         public virtual ICollection<UrunSepet> UrunSepet { get; set; }

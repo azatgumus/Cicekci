@@ -117,10 +117,21 @@
                     <ItemTemplate>
                         <input type="checkbox" disabled="disabled"
                             <%# Convert.ToBoolean(Eval("CokSatan")) ? "checked" : string.Empty %>  />
-                        <%--  <asp:Label ID="lblCokSatan" runat="server" Text='<%# Bind("CokSatan") %>'></asp:Label>--%>
                     </ItemTemplate>
                     <FooterTemplate>
                         <asp:CheckBox ID="chkYeniPopuler" runat="server" CssClass="" MaxLength="30"></asp:CheckBox>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                  <asp:TemplateField HeaderText="Kampanyalı Ürün">
+                    <EditItemTemplate>
+                        <asp:CheckBox ID="chkKampanyali" runat="server" Text='<%# Bind("Kampanyali") %>' CssClass="" MaxLength="30"></asp:CheckBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <input type="checkbox" disabled="disabled"
+                            <%# Convert.ToBoolean(Eval("Kampanyali")) ? "checked" : string.Empty %>  />
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        <asp:CheckBox ID="chkYeniKampanyali" runat="server" CssClass="" MaxLength="30"></asp:CheckBox>
                     </FooterTemplate>
                 </asp:TemplateField>
 
