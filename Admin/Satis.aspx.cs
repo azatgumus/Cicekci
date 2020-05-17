@@ -16,40 +16,108 @@ namespace Cicekci.Admin
         {
             if (!this.IsPostBack)
             {
-                DataTable dummy = new DataTable();
-                dummy.Columns.Add("SiparisTarihi");
-                dummy.Columns.Add("FaturaAdSoyad");
-                dummy.Columns.Add("SiparisTutari");
-                dummy.Rows.Add();
-                grdSatis.DataSource = dummy;
-                grdSatis.DataBind();
-
-                //Required for jQuery DataTables to work.
-                grdSatis.UseAccessibleHeader = true;
-                grdSatis.HeaderRow.TableSection = TableRowSection.TableHeader;
+                FilterClick(sender, e);
             }
-            
-        }
 
-        [WebMethod]
-        public static List<Order> GetSiparisler()
-        {
-           
-            UnitOfWork uow = new UnitOfWork();
-            var ds=uow.SiparisRepository.GetAll().Select(x => new Order
-            {
-                FaturaAdSoyad = x.FaturaAdSoyad,
-                SiparisTarihi = x.SiparisTarihi.ToString(),
-                SiparisTutari = x.SiparisTutari
-            }).ToList();
-            return ds;
         }
 
         public class Order
         {
-            public string SiparisTarihi { get; set; }
-            public string FaturaAdSoyad { get; set; }
-            public decimal SiparisTutari { get; set; }
+            public decimal BirimFiyat { get; set; }
+            public string Ad { get; set; }
+            public bool? Kampanyali { get; set; }
+            public int Miktar { get; set; }
+            public DateTime SiparisTarihi { get; set; }
+            public decimal Tutar { get; set; }
+        }
+
+
+
+
+        protected void FilterClick(object sender, EventArgs e)
+        {
+            UnitOfWork uow = new UnitOfWork();
+            IQueryable<Siparis> siparis = uow.SiparisRepository.GetAll().AsQueryable();
+            IQueryable<Urun> urun = uow.UrunRepository.GetAll().AsQueryable();
+            IQueryable<UrunSepet> sepetItems = uow.UrunSepetRepository.GetAll().AsQueryable();
+            IQueryable<Order> ds = from u in urun
+                                   join us in sepetItems on u.Id equals us.UrunId
+                                   join s in siparis on us.SepetId equals s.Id
+                                   select new Order
+                                   {
+                                       Ad = u.Ad.ToLower(),
+                                       BirimFiyat = u.BirimFiyat,
+                                       Kampanyali = u.Kampanyali,
+                                       Miktar = us.Miktar,
+                                       SiparisTarihi = s.SiparisTarihi,
+                                       Tutar = u.BirimFiyat * us.Miktar
+                                   };
+
+            if (!string.IsNullOrEmpty(txtUrunAdi.Text))
+            {
+                ds = ds.Where(x => x.Ad.Contains(txtUrunAdi.Text.ToLower()));
+                //select* from Siparis
+                //where Id in(
+                //select us.SepetId from Urun u
+                //join UrunSepet us on us.UrunId = u.Id
+                //where u.Ad like '%gül%' group by us.SepetId
+                //)
+
+
+                //var urun = uow.UrunRepository
+                //     .Get(x => x.Ad.Contains(txtUrunAdi.Text)).SelectMany(k => k.UrunSepet).GroupBy(k => k.SepetId).Select(k => k.Key);
+                //ds = ds.Where(x => urun.Contains(x.Id));
+
+                //select u.BirimFiyat,u.Ad,u.Kampanyali,us.Miktar,s.SiparisTarihi from Urun u
+                //join UrunSepet us on us.UrunId = u.Id 
+                //join Siparis s on s.Id = us.SepetId
+                //where u.Ad like '%gül%'
+
+
+
+
+            }
+            if (!string.IsNullOrEmpty(txtFiyat1.Text) && string.IsNullOrEmpty(txtFiyat2.Text))
+            {
+                decimal minTutar = decimal.Parse(txtFiyat1.Text);
+                ds = ds.Where(x => x.Tutar >= minTutar);
+            }
+            if (!string.IsNullOrEmpty(txtFiyat2.Text) && string.IsNullOrEmpty(txtFiyat1.Text))
+            {
+                decimal maxTutar = decimal.Parse(txtFiyat2.Text);
+                ds = ds.Where(x => x.Tutar <= maxTutar);
+            }
+            if (!string.IsNullOrEmpty(txtFiyat1.Text) && !string.IsNullOrEmpty(txtFiyat2.Text))
+            {
+                decimal minTutar = decimal.Parse(txtFiyat1.Text);
+                decimal maxTutar = decimal.Parse(txtFiyat2.Text);
+                ds = ds.Where(x => x.Tutar >= minTutar && x.Tutar <= maxTutar);
+            }
+            if (!string.IsNullOrEmpty(datepicker1.Value) && string.IsNullOrEmpty(datepicker2.Value))
+            {
+                var dt1 = DateTime.Parse(datepicker1.Value);
+                ds = ds.Where(x => x.SiparisTarihi >= dt1);
+            }
+            if (!string.IsNullOrEmpty(datepicker2.Value) && string.IsNullOrEmpty(datepicker1.Value))
+            {
+                var dt2 = DateTime.Parse(datepicker2.Value);
+                ds = ds.Where(x => x.SiparisTarihi <= dt2);
+            }
+            if (!string.IsNullOrEmpty(datepicker2.Value) && !string.IsNullOrEmpty(datepicker1.Value))
+            {
+                var dt1 = DateTime.Parse(datepicker1.Value);
+                var dt2 = DateTime.Parse(datepicker2.Value);
+                ds = ds.Where(x => x.SiparisTarihi >= dt1 && x.SiparisTarihi <= dt2);
+            }
+            if (!string.IsNullOrEmpty(txtMiktar.Text))
+            {
+                int miktar = int.Parse(txtMiktar.Text);
+                ds = ds.Where(x => x.Miktar >= miktar);
+            }
+
+
+            grdSatis.DataSource = ds;
+            grdSatis.DataBind();
         }
     }
 }

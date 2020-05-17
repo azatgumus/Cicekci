@@ -882,4 +882,10 @@ div.accountInfo
 .hidden {
     display: none;
 }
+.btnSite {
+    width: 150px;
+    height: 25px;
+    background-color: #145A32;
+    color:white;
+}
 
