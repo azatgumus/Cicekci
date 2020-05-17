@@ -14,15 +14,15 @@ namespace Cicekci.DataAccess
         public string KartNo { get; set; }
         public Nullable<int> UyeId { get; set; }
 
-        [MaxLength(255),Required]
+        [MaxLength(255), Required]
         public string FaturaAdSoyad { get; set; }
 
-        [MaxLength(255),Required]
+        [MaxLength(255), Required]
         public string FaturaAdres { get; set; }
-        [MaxLength(20),Required]
+        [MaxLength(20), Required]
         public string TelNo { get; set; }
 
-        [MaxLength(255),Required]
+        [MaxLength(255), Required]
         public string Email { get; set; }
 
         public int? Cvv { get; set; }
@@ -31,6 +31,8 @@ namespace Cicekci.DataAccess
 
         [MaxLength(255)]
         public string KartSahibiAdSoyad { get; set; }
+
+        public decimal SiparisTutari { get; set; }
 
 
         public virtual Sepet Sepet { get; set; }

@@ -13,7 +13,7 @@ namespace Cicekci.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202004212108140_InitialCreate"; }
+            get { return "202005171519571_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

@@ -16,7 +16,7 @@ namespace Cicekci
             if (IsPostBack) return;
             Sepetim usersShoppingCart = new Sepetim();
             var items = usersShoppingCart.SepetItems(Session["SepetId"].ToString());
-            Listem.DataSource = items.Select(x => new SepetUrun { Miktar = x.Miktar, BirimFiyat = x.Urun.BirimFiyat, Ad = x.Urun.Ad, Id = x.Urun.Id }).ToList();
+            Listem.DataSource = items.Select(x => new SepetUrun { Miktar = x.Miktar, BirimFiyat = x.Urun.KategoriId == 6 ? (Math.Round(x.Urun.BirimFiyat * Convert.ToDecimal(0.7), 2, MidpointRounding.AwayFromZero)) : x.Urun.BirimFiyat, Ad = x.Urun.Ad, Id = x.Urun.Id }).ToList();
             Listem.DataBind();
 
             //CheckOutHeader.InnerText = "Sepetiniz Boş";
@@ -38,6 +38,7 @@ namespace Cicekci
                     lblMessage.Text = "Siparişinizi Gözden Geçirin ve Tamamlayın";
                     Gönder.Visible = true;
                     e.Row.Cells[3].Text = "Toplam Tutar: " + _SepetToplam.ToString("C");
+                    e.Row.Cells[3].Attributes.Add("Tutar",_SepetToplam.ToString());
                 }
             }
         }
@@ -60,8 +61,8 @@ namespace Cicekci
                 TelNo = txtTelefonNo.Text,
                 FaturaAdSoyad = txtAdSoyad.Text,
                 Email = txtEmail.Text,
-                SiparisTarihi = DateTime.Now
-
+                SiparisTarihi = DateTime.Now,
+                SiparisTutari =decimal.Parse(Listem.FooterRow.Cells[3].Attributes["Tutar"])
             };
             if ((usersShoppingCart.SiparişiGönder(siparis) == true) && (txtAdres.Text != ""))
             {

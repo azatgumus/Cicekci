@@ -55,7 +55,7 @@
                         <asp:MenuItem Text="Ürün İşlemleri" NavigateUrl="~/Admin/Default.aspx"></asp:MenuItem>
                         <asp:MenuItem Text="Kategori İşlemleri" NavigateUrl="~/Admin/KategoriEdition.aspx"></asp:MenuItem>
                         <asp:MenuItem Text="Raporlar">
-                            <asp:MenuItem Text="Satış"></asp:MenuItem>
+                            <asp:MenuItem Text="Satış" NavigateUrl="~/Admin/Satis.aspx"></asp:MenuItem>
                             <asp:MenuItem Text="Üyelik"></asp:MenuItem>
                             <asp:MenuItem Text="İletişim"></asp:MenuItem>
                         </asp:MenuItem>

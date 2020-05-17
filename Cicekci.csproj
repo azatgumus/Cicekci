@@ -87,6 +87,7 @@
     <Content Include="Account\SiparişListesi.aspx" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\KategoriEdition.aspx" />
+    <Content Include="Admin\Satis.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Styles\Resimler\5-dal-beyaz-orkide-aranjmani-at353-1-8d46a363ee36ec2-80933a56.jpg" />
     <Content Include="Styles\Resimler\at1741-1-8d714dd6e0ce959-9f0598c8.jpg" />
@@ -219,6 +220,13 @@
     <Compile Include="Admin\KategoriEdition.aspx.designer.cs">
       <DependentUpon>KategoriEdition.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Satis.aspx.cs">
+      <DependentUpon>Satis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Satis.aspx.designer.cs">
+      <DependentUpon>Satis.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Sepetim.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -242,9 +250,9 @@
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004212108140_InitialCreate.cs" />
-    <Compile Include="Migrations\202004212108140_InitialCreate.designer.cs">
-      <DependentUpon>202004212108140_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202005171519571_InitialCreate.cs" />
+    <Compile Include="Migrations\202005171519571_InitialCreate.designer.cs">
+      <DependentUpon>202005171519571_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="YorumEkle.aspx.cs">
@@ -375,8 +383,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004212108140_InitialCreate.resx">
-      <DependentUpon>202004212108140_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005171519571_InitialCreate.resx">
+      <DependentUpon>202005171519571_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

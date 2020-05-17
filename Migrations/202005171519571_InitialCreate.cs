@@ -27,6 +27,7 @@
                         Aciklama = c.String(maxLength: 500),
                         Ad = c.String(nullable: false, maxLength: 100),
                         CokSatan = c.Boolean(),
+                        Kampanyali = c.Boolean(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Kategori", t => t.KategoriId, cascadeDelete: true)
@@ -60,10 +61,17 @@
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 50),
-                        MusteriAdi = c.String(nullable: false, maxLength: 50),
                         SiparisTarihi = c.DateTime(nullable: false),
-                        KartNo = c.String(nullable: false, maxLength: 16),
+                        KartNo = c.String(maxLength: 16),
                         UyeId = c.Int(),
+                        FaturaAdSoyad = c.String(nullable: false, maxLength: 255),
+                        FaturaAdres = c.String(nullable: false, maxLength: 255),
+                        TelNo = c.String(nullable: false, maxLength: 20),
+                        Email = c.String(nullable: false, maxLength: 255),
+                        Cvv = c.Int(),
+                        SktYil = c.Int(),
+                        SktAy = c.Int(),
+                        KartSahibiAdSoyad = c.String(maxLength: 255),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Sepet", t => t.Id)
