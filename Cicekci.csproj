@@ -92,8 +92,10 @@
     <Content Include="Account\SiparişDetay.aspx" />
     <Content Include="Account\SiparişListesi.aspx" />
     <Content Include="Admin\Default.aspx" />
+    <Content Include="Admin\IletisimRapor.aspx" />
     <Content Include="Admin\KategoriEdition.aspx" />
     <Content Include="Admin\Satis.aspx" />
+    <Content Include="Admin\UyelikRapor.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Styles\Resimler\5-dal-beyaz-orkide-aranjmani-at353-1-8d46a363ee36ec2-80933a56.jpg" />
     <Content Include="Styles\Resimler\at1741-1-8d714dd6e0ce959-9f0598c8.jpg" />
@@ -221,6 +223,13 @@
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\IletisimRapor.aspx.cs">
+      <DependentUpon>IletisimRapor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\IletisimRapor.aspx.designer.cs">
+      <DependentUpon>IletisimRapor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\KategoriEdition.aspx.cs">
       <DependentUpon>KategoriEdition.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -235,6 +244,13 @@
     <Compile Include="Admin\Satis.aspx.designer.cs">
       <DependentUpon>Satis.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UyelikRapor.aspx.cs">
+      <DependentUpon>UyelikRapor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UyelikRapor.aspx.designer.cs">
+      <DependentUpon>UyelikRapor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Sepetim.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -242,6 +258,7 @@
     <Compile Include="DataAccess\GenericRepository.cs" />
     <Compile Include="DataAccess\Context.cs" />
     <Compile Include="DataAccess\IGenericRepository.cs" />
+    <Compile Include="DataAccess\Iletisim.cs" />
     <Compile Include="DataAccess\Kategori.cs" />
     <Compile Include="DataAccess\Rol.cs" />
     <Compile Include="DataAccess\Sepet.cs" />

@@ -24,5 +24,6 @@
         public DbSet<UrunSepet> UrunSepet { get; set; }
         public DbSet<Uye> Uye { get; set; }
         public DbSet<Yorum> Yorum { get; set; }
+        public DbSet<Iletisim> Iletisim { get; set; }
     }
 }

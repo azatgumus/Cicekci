@@ -4,7 +4,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="ContentHead">Siparişler</div>
+    <asp:Label runat="server" ID="lblMessage"></asp:Label>
 
+    <table runat="server" id="tblAnonim" visible="false">
+        <tr>
+            <td>Sipariş No</td>
+            <td><asp:TextBox runat="server" ID="txtSiparisNo"></asp:TextBox></td>
+            <td><asp:Button runat="server" Text="Getir" CssClass="btnSite" ID="btnGetir" OnClick="SiparisGetir"></asp:Button></td>
+        </tr>
+    </table>
+    
     <asp:GridView ID="GridView_SiparişListesi" runat="server" AllowPaging="True"
         GridLines="Vertical"
         CssClass="mGrid"
@@ -15,7 +24,7 @@
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="SiparişID" ReadOnly="True"
                 SortExpression="ID" />
-            <asp:BoundField DataField="MusteriAdi" HeaderText="Müşteri"
+            <asp:BoundField DataField="SiparisTutari" HeaderText="Tutar"
                 SortExpression="MusteriAdi" />
             <asp:BoundField DataField="SiparisTarihi" HeaderText="Sipariş Tarihi"
                 SortExpression="SiparisTarihi" />
@@ -26,6 +35,7 @@
         </Columns>
 
     </asp:GridView>
+
 
 
 </asp:Content>

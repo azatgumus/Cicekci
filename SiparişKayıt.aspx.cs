@@ -38,7 +38,7 @@ namespace Cicekci
                     lblMessage.Text = "Siparişinizi Gözden Geçirin ve Tamamlayın";
                     Gönder.Visible = true;
                     e.Row.Cells[3].Text = "Toplam Tutar: " + _SepetToplam.ToString("C");
-                    e.Row.Cells[3].Attributes.Add("Tutar",_SepetToplam.ToString());
+                    e.Row.Cells[3].Attributes.Add("Tutar", _SepetToplam.ToString());
                 }
             }
         }
@@ -62,7 +62,8 @@ namespace Cicekci
                 FaturaAdSoyad = txtAdSoyad.Text,
                 Email = txtEmail.Text,
                 SiparisTarihi = DateTime.Now,
-                SiparisTutari =decimal.Parse(Listem.FooterRow.Cells[3].Attributes["Tutar"])
+                UyeId = Session["UserId"] == null ? (int?)null : (int)Session["UserId"],
+                SiparisTutari = decimal.Parse(Listem.FooterRow.Cells[3].Attributes["Tutar"])
             };
             if ((usersShoppingCart.SiparişiGönder(siparis) == true) && (txtAdres.Text != ""))
             {
@@ -84,6 +85,8 @@ namespace Cicekci
         {
 
         }
+
+
 
 
     }

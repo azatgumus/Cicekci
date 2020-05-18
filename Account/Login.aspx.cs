@@ -3,6 +3,7 @@ using System.Web.UI;
 using System.Web.Security;
 using Cicekci.DataAccess;
 using System.Linq;
+using System.Web;
 
 namespace Cicekci.Account
 {
@@ -20,8 +21,8 @@ namespace Cicekci.Account
             }
             else
             {
-                if(Request.QueryString["ReturnUrl"]!=null)
-                Session["LoginReferrer"] = Request.QueryString["ReturnUrl"];
+                if (Request.QueryString["ReturnUrl"] != null)
+                    Session["LoginReferrer"] = Request.QueryString["ReturnUrl"];
             }
 
 
@@ -49,24 +50,34 @@ namespace Cicekci.Account
 
         //}
 
-        
 
-       
+
+
 
         protected void LoginButton_Click(object sender, ImageClickEventArgs e)
         {
             UnitOfWork uow = new UnitOfWork();
 
-            Uye uye=uow.UyeRepository.Get(x=>x.KullaniciAdi==UserName.Text.Trim() && x.Sifre==Password.Text.Trim()).FirstOrDefault();
-            if(uye!=null)
+            Uye uye = uow.UyeRepository.Get(x => x.KullaniciAdi == UserName.Text.Trim() && x.Sifre == Password.Text.Trim()).FirstOrDefault();
+            if (uye != null)
             {
-                FormsAuthentication.SetAuthCookie(UserName.Text, RememberMe.Checked);
+                //FormsAuthentication.SetAuthCookie(UserName.Text, RememberMe.Checked);
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
+                                                                        uye.KullaniciAdi,
+                                                                        DateTime.Now,
+                                                                        DateTime.Now.AddHours(24),
+                                                                        RememberMe.Checked,
+                                                                        uye.Id.ToString());
+
+                HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName);
+                cookie.Value = FormsAuthentication.Encrypt(ticket);
+                HttpContext.Current.Response.SetCookie(cookie);
                 //adminse
-                if(uye.RolId==2)
+                if (uye.RolId == 2)
                 {
                     Response.Redirect("~/Admin/Default.aspx");
                 }
-                else if(uye.RolId==1 && Session["LoginReferrer"]!=null && !Session["LoginReferrer"].ToString().Contains("Sepetim"))
+                else if (uye.RolId == 1 && Session["LoginReferrer"] != null && !Session["LoginReferrer"].ToString().Contains("Sepetim"))
                 {
                     Response.Redirect("~/Ürünlistesi.aspx?kategoriId=6");
                 }
@@ -74,14 +85,14 @@ namespace Cicekci.Account
                 if (Session["LoginReferrer"] == null)
                 {
                     Response.Redirect("~/Default.aspx");
-                   
+
                 }
                 else
                 {
                     Response.Redirect(Session["LoginReferrer"].ToString());
                 }
 
-               
+
                 //Response.Redirect(Page.Request.UrlReferrer);
 
             }

@@ -8,10 +8,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static iTextSharp.text.Font;
+using Image = iTextSharp.text.Image;
 
 namespace Cicekci.Admin
 {
@@ -19,10 +22,13 @@ namespace Cicekci.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.IsPostBack)
-            {
-                FilterClick(sender, e);
-            }
+            if (IsPostBack) return;
+            grdSatis.DataSource = new List<Order>();
+            grdSatis.DataBind();
+            //if (!this.IsPostBack)
+            //{
+            //    FilterClick(sender, e);
+            //}
 
         }
 
@@ -34,6 +40,8 @@ namespace Cicekci.Admin
             public int Miktar { get; set; }
             public DateTime SiparisTarihi { get; set; }
             public decimal Tutar { get; set; }
+            public string AdSoyad { get; set; }
+            public string Email { get; set; }
         }
 
 
@@ -55,7 +63,9 @@ namespace Cicekci.Admin
                                        Kampanyali = u.Kampanyali,
                                        Miktar = us.Miktar,
                                        SiparisTarihi = s.SiparisTarihi,
-                                       Tutar = u.BirimFiyat * us.Miktar
+                                       Tutar = u.BirimFiyat * us.Miktar,
+                                       AdSoyad = s.FaturaAdSoyad,
+                                       Email = s.Email
                                    };
 
             if (!string.IsNullOrEmpty(txtUrunAdi.Text))
@@ -119,6 +129,14 @@ namespace Cicekci.Admin
                 int miktar = int.Parse(txtMiktar.Text);
                 ds = ds.Where(x => x.Miktar >= miktar);
             }
+            if (!string.IsNullOrEmpty(txtAdSoyad.Text))
+            {
+                ds = ds.Where(x => x.AdSoyad.Contains(txtAdSoyad.Text));
+            }
+            if (!string.IsNullOrEmpty(txtEmail.Text))
+            {
+                ds = ds.Where(x => x.Email.Contains(txtEmail.Text));
+            }
 
 
             grdSatis.DataSource = ds;
@@ -126,24 +144,36 @@ namespace Cicekci.Admin
         }
 
 
-        protected void ExportGridToPDF(object sender,EventArgs e)
+        protected void ExportGridToPDF(object sender, EventArgs e)
         {
             Response.ContentType = "application/pdf";
             Response.AddHeader("content-disposition", "attachment;filename=Satis.pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             StringWriter sw = new StringWriter();
             HtmlTextWriter hw = new HtmlTextWriter(sw);
-            imgLogo.Visible = true;
-            lblSite.Visible = true;
-            imgLogo.Src = Server.MapPath("~/Styles/Resimler/fav.jpg");
-            pnlPrint.RenderControl(hw);
-            imgLogo.Visible = false;
-            lblSite.Visible = false;
+            grdSatis.RenderControl(hw);
             StringReader sr = new StringReader(sw.ToString());
-            Document pdfDoc = new Document(PageSize.A4.Rotate(), 10f, 10f, 20f, 0f);
+            Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 2f, 0f);
             HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
             PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+
             pdfDoc.Open();
+            iTextSharp.text.Image addLogo = default(iTextSharp.text.Image);
+            addLogo = iTextSharp.text.Image.GetInstance(Server.MapPath("~/Styles/Resimler/fav.jpg"));
+            addLogo.ScaleToFit(60, 50);
+            //addLogo.Alignment = iTextSharp.text.Image.ALIGN_TOP;
+            pdfDoc.Add(addLogo);
+
+
+            BaseFont myFont = BaseFont.CreateFont(@"C:\windows\fonts\arial.ttf", "windows-1254", BaseFont.EMBEDDED);
+            Font fontNormal = new Font(myFont, 15, Font.NORMAL, BaseColor.RED);
+
+            pdfDoc.Add(new Paragraph("Cicekcim.com                                         " + "Satış Raporları", fontNormal));
+            pdfDoc.Add(new Paragraph("Vergi Dairesi : Çankaya"));
+            pdfDoc.Add(new Paragraph("Vergi No : 3420204514"));
+            pdfDoc.Add(new Paragraph("\n"));
+
+
             htmlparser.Parse(sr);
             pdfDoc.Close();
             Response.Write(pdfDoc);

@@ -4,6 +4,7 @@ using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web.UI.WebControls;
 
 namespace Cicekci.Account
@@ -16,7 +17,12 @@ namespace Cicekci.Account
         {
             if (IsPostBack) return;
             String siparisId = Request.QueryString["SiparişId"];
-            FormView1.DataSource = new List<Siparis> { uow.SiparisRepository.GetById(siparisId) };
+            var siparis = uow.SiparisRepository.GetById(siparisId);
+            FormView1.DataSource = new List<Dto> { new Dto{
+            Ad=siparis.Uye==null?siparis.FaturaAdSoyad:siparis.Uye.KullaniciAdi,
+            Id=siparis.Id,
+            SiparisTarihi=siparis.SiparisTarihi
+            } };
             FormView1.DataBind();
 
             GridView_SiparişDetay.DataSource = uow.UrunSepetRepository.Get(x => x.SepetId == siparisId).
@@ -32,7 +38,7 @@ namespace Cicekci.Account
         }
         protected void Listem_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string siparisId = Request.QueryString["SiparişId"];
@@ -52,6 +58,13 @@ namespace Cicekci.Account
 
                 e.Row.Cells[4].Text = "Toplam Tutar: " + toplam.ToString("C");
             }
+        }
+
+        public class Dto
+        {
+            public string Id { get; set; }
+            public string Ad { get; set; }
+            public DateTime SiparisTarihi { get; set; }
         }
     }
 }

@@ -74,7 +74,7 @@
                                     <img src="~/Styles/Resimler/kgpg_sign.png" alt="" runat="server" /><br />
                                     <asp:LoginView ID="MenuLoginView" runat="server">
                                         <AnonymousTemplate>
-                                            Giriş
+                                            Üye Girişi
                        
                                         </AnonymousTemplate>
                                         <LoggedInTemplate>
@@ -86,7 +86,7 @@
                             </td>
                             <td align="center" style="width: 75;"><a href="~/Account/SiparişListesi.aspx" class="masterlink" runat="server">
                                 <img src="~/Styles/Resimler/entry_save.png" alt="" runat="server" /><br />
-                                Siparişlerim</a></td>
+                                Sipariş Takibi</a></td>
                             <td align="center" style="width: 65px;"><a href="~/Sepetim.aspx" class="masterlink" runat="server">
                                 <img src="~/Styles/Resimler/cart.gif" alt="" runat="server" /><br />
                                 Sepet</a></td>

@@ -7,56 +7,47 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cicekci.Account
+namespace Cicekci.Admin
 {
 
 
-    public partial class SiparişListesi
+    public partial class IletisimRapor
     {
 
         /// <summary>
-        /// lblMessage control.
+        /// txtAd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.TextBox txtAd;
 
         /// <summary>
-        /// tblAnonim control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable tblAnonim;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
-        /// txtSiparisNo control.
+        /// txtKonu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSiparisNo;
+        protected global::System.Web.UI.WebControls.TextBox txtKonu;
 
         /// <summary>
-        /// btnGetir control.
+        /// grdIletisim control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGetir;
-
-        /// <summary>
-        /// GridView_SiparişListesi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView_SiparişListesi;
+        protected global::System.Web.UI.WebControls.GridView grdIletisim;
     }
 }

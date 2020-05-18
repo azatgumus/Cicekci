@@ -42,6 +42,15 @@ namespace Cicekci.Admin
         protected global::System.Web.UI.WebControls.TextBox txtUrunAdi;
 
         /// <summary>
+        /// txtAdSoyad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAdSoyad;
+
+        /// <summary>
         /// datepicker2 control.
         /// </summary>
         /// <remarks>
@@ -69,31 +78,13 @@ namespace Cicekci.Admin
         protected global::System.Web.UI.WebControls.TextBox txtMiktar;
 
         /// <summary>
-        /// pnlPrint control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlPrint;
-
-        /// <summary>
-        /// imgLogo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage imgLogo;
-
-        /// <summary>
-        /// lblSite control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSite;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
         /// grdSatis control.

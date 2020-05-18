@@ -4,13 +4,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:FormView ID="FormView1" runat="server" CellPadding="4"
-        ForeColor="#333333" Width="250px">
+        ForeColor="#333333" Width="500px">
         <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
         <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
         <ItemTemplate>
-            SiparişID : <%# Eval("Id") %><br />
-            Müşteri Adı : <%# Eval("MusteriAdi") %><br />
-            Sipariş Tarihi : <%# Eval("SiparisTarihi") %><br />
+            SiparişID : <%# Eval("Id") %><br/>
+            Sipariş Tarihi : <%# Eval("SiparisTarihi") %><br/>
+            Teslimat Tarihi : <%# DateTime.Now.AddDays(2) %><br/>
+            Müşteri Adı : <%# Eval("Ad") %><br /> 
+           <br />
         </ItemTemplate>
         <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
         <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />

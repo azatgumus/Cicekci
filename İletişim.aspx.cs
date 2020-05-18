@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Net.Mail;
+using Cicekci.DataAccess;
 
 namespace Cicekci
 {
@@ -20,7 +17,21 @@ namespace Cicekci
 
         }
 
-        
+        protected void Gonder(object sender, EventArgs e)
+        {
+            UnitOfWork uow = new UnitOfWork();
+            var iletisim = new Iletisim
+            {
+                Ad = TextBoxAd.Text,
+                Email = TextBoxEmail.Text,
+                Konu = TextBoxKonu.Text,
+                Mesaj = HttpUtility.HtmlEncode(Editor1.Content)
+            };
+            uow.IletisimRepository.Insert(iletisim);
+            uow.Save();
+            LabelMessage.Text = "Teşekkürler - Mesajınız Gönderildi.";
+
+        }
 
         protected void Button1_Click(object sender, EventArgs e)
         {

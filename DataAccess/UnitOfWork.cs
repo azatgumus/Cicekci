@@ -13,15 +13,17 @@ namespace Cicekci.DataAccess
         private GenericRepository<UrunSepet> urunSepetRepository;
         private GenericRepository<Uye> uyeRepository;
         private GenericRepository<Yorum> yorumRepository;
+        private GenericRepository<Iletisim> iletisimRepository;
 
         public GenericRepository<Kategori> KategoriRepository => this.kategoriRepository ?? new GenericRepository<Kategori>(context);
-        public GenericRepository<Rol> RolRepository=> this.rolRepository ?? new GenericRepository<Rol>(context);
+        public GenericRepository<Rol> RolRepository => this.rolRepository ?? new GenericRepository<Rol>(context);
         public GenericRepository<Sepet> SepetRepository => this.sepetRepository ?? new GenericRepository<Sepet>(context);
         public GenericRepository<Siparis> SiparisRepository => this.siparisRepository ?? new GenericRepository<Siparis>(context);
         public GenericRepository<Urun> UrunRepository => this.urunRepository ?? new GenericRepository<Urun>(context);
         public GenericRepository<UrunSepet> UrunSepetRepository => this.urunSepetRepository ?? new GenericRepository<UrunSepet>(context);
         public GenericRepository<Uye> UyeRepository => this.uyeRepository ?? new GenericRepository<Uye>(context);
         public GenericRepository<Yorum> YorumRepository => this.yorumRepository ?? new GenericRepository<Yorum>(context);
+        public GenericRepository<Iletisim> IletisimRepository => this.iletisimRepository ?? new GenericRepository<Iletisim>(context);
 
         public void Save()
         {
@@ -49,4 +51,3 @@ namespace Cicekci.DataAccess
         }
     }
 }
- 
