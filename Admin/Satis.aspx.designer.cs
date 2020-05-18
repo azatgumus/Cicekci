@@ -69,6 +69,33 @@ namespace Cicekci.Admin
         protected global::System.Web.UI.WebControls.TextBox txtMiktar;
 
         /// <summary>
+        /// pnlPrint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlPrint;
+
+        /// <summary>
+        /// imgLogo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgLogo;
+
+        /// <summary>
+        /// lblSite control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSite;
+
+        /// <summary>
         /// grdSatis control.
         /// </summary>
         /// <remarks>

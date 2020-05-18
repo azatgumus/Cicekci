@@ -1,7 +1,12 @@
 ﻿using Cicekci.DataAccess;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -117,6 +122,60 @@ namespace Cicekci.Admin
 
 
             grdSatis.DataSource = ds;
+            grdSatis.DataBind();
+        }
+
+
+        protected void ExportGridToPDF(object sender,EventArgs e)
+        {
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=Satis.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            imgLogo.Visible = true;
+            lblSite.Visible = true;
+            imgLogo.Src = Server.MapPath("~/Styles/Resimler/fav.jpg");
+            pnlPrint.RenderControl(hw);
+            imgLogo.Visible = false;
+            lblSite.Visible = false;
+            StringReader sr = new StringReader(sw.ToString());
+            Document pdfDoc = new Document(PageSize.A4.Rotate(), 10f, 10f, 20f, 0f);
+            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+            pdfDoc.Open();
+            htmlparser.Parse(sr);
+            pdfDoc.Close();
+            Response.Write(pdfDoc);
+            Response.End();
+        }
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            //required to avoid the runtime error "  
+            //Control 'GridView1' of type 'GridView' must be placed inside a form tag with runat=server."  
+        }
+
+
+        [Obsolete]
+        private void ExportGridToPDF()
+        {
+
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=Vithal_Wadje.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            grdSatis.RenderControl(hw);
+            StringReader sr = new StringReader(sw.ToString());
+            Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+            pdfDoc.Open();
+            htmlparser.Parse(sr);
+            pdfDoc.Close();
+            Response.Write(pdfDoc);
+            Response.End();
+            grdSatis.AllowPaging = true;
             grdSatis.DataBind();
         }
     }

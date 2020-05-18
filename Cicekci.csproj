@@ -63,6 +63,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itextsharp.xmlworker.5.5.13.1\lib\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -101,6 +107,8 @@
     <Content Include="Styles\Resimler\delete32.png" />
     <Content Include="Styles\Resimler\dogal-ahsap-kutukte-papatya-aranjmani-at3709-1-8d67d5ca3dc61be-69b93c3b.jpg" />
     <Content Include="Styles\Resimler\edit32.png" />
+    <Content Include="Styles\Resimler\fav.jpg" />
+    <Content Include="Styles\Resimler\fav.png" />
     <Content Include="Styles\Resimler\favicon.ico" />
     <Content Include="Styles\Resimler\gold-nice-mutlu-yillar-cilek-ve-brovni-kek-buketi-kc804610-1-1.jpg" />
     <Content Include="Styles\Resimler\images.jpg" />

@@ -18,7 +18,8 @@
                 <td>
                     <asp:TextBox runat="server" ID="txtUrunAdi"></asp:TextBox>
                 </td>
-                <td rowspan="2"> <asp:Button runat="server" Height="50" CssClass="btnSite" OnClick="FilterClick" Text="Rapor Al" /></td>
+                <td>
+                    <asp:Button runat="server" CssClass="btnSite" OnClick="FilterClick" Text="Rapor Al" /></td>
 
             </tr>
             <tr>
@@ -32,24 +33,48 @@
                 <td>
                     <asp:TextBox runat="server" ID="txtMiktar" ToolTip="En az" TextMode="Number"></asp:TextBox>
                 </td>
-                
+                <td>
+                    <asp:Button runat="server" CssClass="btnSite" OnClick="ExportGridToPDF" Text="PDF" /></td>
             </tr>
-           
+
         </table>
         <br />
-        <br />
-        <asp:GridView CssClass="mGrid" runat="server" ID="grdSatis" AutoGenerateColumns="false" Width="100%">
-            <Columns>
-                <%--<asp:BoundField DataField="Id" HeaderText="Sipariş Id" />--%>
-                <asp:BoundField DataField="SiparisTarihi" HeaderText="Sipariş Tarihi" />
-                <asp:BoundField DataField="Ad" HeaderText="Ad" />
-                <asp:BoundField DataField="BirimFiyat" HeaderText="Fiyat" />
-                <asp:BoundField DataField="Miktar" HeaderText="Miktar" />
-                <asp:BoundField DataField="Tutar" HeaderText="Tutar" />
+        <asp:Panel runat="server" ID="pnlPrint">
+            <table style="width:100%;height:100%">
+                <tr>
+                    <td>
+                        <img src="" runat="server" visible="false" height="50" width="60" id="imgLogo" style="margin-bottom: 10px" />
+                    </td>
+                    <td>
+                        <b><span style="color:red;">Satis Raporlari</span></b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label runat="server" ID="lblSite" Text="Cicekcim.com<br/>Vergi Dairesi:Çankaya<br/> Vergi No:3420204514" Visible="false"  />
+                    </td>
+                </tr>
+               <tr><td></td></tr>
+                
+                <tr>
+                    <td>
+                        <asp:GridView CssClass="mGrid" AlternatingRowStyle-CssClass="alt" GridLines="Vertical" runat="server" ID="grdSatis" AutoGenerateColumns="false" Width="100%">
+                            <Columns>
+                                <%--<asp:BoundField DataField="Id" HeaderText="Sipariş Id" />--%>
+                                <asp:BoundField DataField="SiparisTarihi" HeaderText="Sipariş Tarihi" />
+                                <asp:BoundField DataField="Ad" HeaderText="Ad" />
+                                <asp:BoundField DataField="BirimFiyat" HeaderText="Fiyat" />
+                                <asp:BoundField DataField="Miktar" HeaderText="Miktar" />
+                                <asp:BoundField DataField="Tutar" HeaderText="Tutar" />
+                            </Columns>
+                        </asp:GridView>
+                    </td>
+                </tr>
+            </table>
 
 
-            </Columns>
-        </asp:GridView>
+
+        </asp:Panel>
     </div>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
