@@ -63,12 +63,35 @@
         <div id="outer">
             <div id="header">
                 <div style="float: left;">
-                    <h1><a href="#"><img src="Styles/Resimler/favicon.ico" width="50px;" height="50px" alt="Site"/>Cicekcim.com <br />Online Çiçek Bahçeniz</a></h1>
+                    <h1><a href="#">
+                        <img src="Styles/Resimler/favicon.ico" width="50px;" height="50px" alt="Site" />Cicekcim.com
+                        <br />
+                        Online Çiçek Bahçeniz</a></h1>
                 </div>
+
+
+              <%--  <div>
+                    <asp:DropDownList runat="server"></asp:DropDownList>
+                </div>--%>
+
+
+
                 <div style="float: right; vertical-align: middle;">
 
                     <table cellpadding="0" cellspacing="0" border="0">
                         <tr style="vertical-align: middle;">
+                              <td align="center" style="width: 65px">
+                                <br />
+                                <asp:LoginView ID="LoginView1" runat="server">
+                                    <AnonymousTemplate>
+                                    </AnonymousTemplate>
+                                    <LoggedInTemplate>
+                                        <a class="masterlink" href="Account/ChangePassword.aspx">
+                                            <img alt="" height="35" src="~/Styles/Resimler/target.gif" runat="server" /><br />
+                                            Üyelik Bilgileri</a>
+                                    </LoggedInTemplate>
+                                </asp:LoginView>
+                            </td>
                             <td align="center" style="width: 65px">
                                 <a href="~/Account/Login.aspx" runat="server" class="masterlink">
                                     <img src="~/Styles/Resimler/kgpg_sign.png" alt="" runat="server" /><br />
@@ -79,16 +102,19 @@
                                         </AnonymousTemplate>
                                         <LoggedInTemplate>
                                             Çıkış
-                       
                                         </LoggedInTemplate>
                                     </asp:LoginView>
                                 </a>
                             </td>
+                          
+                            <%--  <td align="center" style="width: 65px;"><a class="masterlink"href="Account/ChangePassword.aspx">
+                                <img alt="" height="35" src="~/Styles/Resimler/target.gif" runat="server"/><br/>
+                                               Üyelik Bilgileri</a></td>--%>
                             <td align="center" style="width: 75;"><a href="~/Account/SiparişListesi.aspx" class="masterlink" runat="server">
                                 <img src="~/Styles/Resimler/entry_save.png" alt="" runat="server" /><br />
                                 Sipariş Takibi</a></td>
                             <td align="center" style="width: 65px;"><a href="~/Sepetim.aspx" class="masterlink" runat="server">
-                                <img src="~/Styles/Resimler/cart.gif" alt="" runat="server" /><br />
+                                <img src="~/Styles/Resimler/cart.gif" alt="" height="45" runat="server" /><br />
                                 Sepet</a></td>
 
                         </tr>
@@ -106,7 +132,7 @@
                 <div id="rightColumn">
                 </div>
                 <div id="mainContent">
-                    <div id="centerColumn" style="margin-left:50px;margin-right:75px;">
+                    <div id="centerColumn" style="margin-left: 50px; margin-right: 75px;">
                         <asp:ContentPlaceHolder ID="MainContent" runat="server">
                             <p>
                             </p>
@@ -114,7 +140,7 @@
                     </div>
                 </div>
                 <div id="leftColumn">
-                   <%-- <span style="font-size: 20px; display:block;margin-bottom:5px">Kategoriler</span> --%>
+                    <%-- <span style="font-size: 20px; display:block;margin-bottom:5px">Kategoriler</span> --%>
                     <span style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776; Kategoriler</span>
                     <div id="mySidenav" class="sidenav">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
