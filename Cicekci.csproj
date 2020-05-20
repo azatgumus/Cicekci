@@ -96,6 +96,7 @@
     <Content Include="Admin\KategoriEdition.aspx" />
     <Content Include="Admin\Satis.aspx" />
     <Content Include="Admin\UyelikRapor.aspx" />
+    <Content Include="App_Data\InsertScripts.sql" />
     <Content Include="Error.aspx" />
     <Content Include="Styles\Resimler\5-dal-beyaz-orkide-aranjmani-at353-1-8d46a363ee36ec2-80933a56.jpg" />
     <Content Include="Styles\Resimler\at1741-1-8d714dd6e0ce959-9f0598c8.jpg" />
