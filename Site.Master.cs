@@ -9,10 +9,10 @@ namespace Cicekci
 {
     public partial class SiteMaster : System.Web.UI.MasterPage
     {
-
+        UnitOfWork uow = new UnitOfWork();
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
             if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 if (Session["UserName"] == null)
@@ -24,9 +24,14 @@ namespace Cicekci
         }
         public List<Kategori> KategoriList()
         {
-            UnitOfWork uow = new UnitOfWork();
+            uow = new UnitOfWork();
             var kategoriler = uow.KategoriRepository.GetAll().ToList();
             return kategoriler;
+        }
+
+        protected void Search(object sender, EventArgs e)
+        {
+            Response.Redirect("ÜrünListesi.aspx?search=" + txtSearch.Text.Trim());
         }
     }
 }

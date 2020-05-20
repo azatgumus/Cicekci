@@ -12,8 +12,8 @@ namespace Cicekci
             if (IsPostBack) return;
             UnitOfWork uow = new UnitOfWork();
             var x = uow.UrunRepository.GetAll();
-            string kategoriId = Request.QueryString["KategoriId"];
-            if (kategoriId != null)
+
+            if (Request.QueryString["KategoriId"] != null)
             {
                 var kategoriIdAsInt = int.Parse(Request.QueryString["KategoriId"]);
                 if (kategoriIdAsInt == 6 && !User.Identity.IsAuthenticated)
@@ -23,6 +23,15 @@ namespace Cicekci
                     return;
                 }
                 x = x.Where(r => r.KategoriId == kategoriIdAsInt);
+            }
+            else if (Request.QueryString["search"] != null)
+            {
+                x = x.Where(k => k.Ad.ToLower().Contains(Request.QueryString["search"].ToString().ToLower()));
+                if (!x.Any())
+                {
+                    lblMsg.Text = "Aradığınız ürün bulunamadı";
+                    return;
+                }
             }
             if (User.Identity.IsAuthenticated)
             {
